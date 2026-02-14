@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Act. 03 – Interpretación y traducción de políticas de filtrado en iptables</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/act.css">
+</head>
+<body>
+
+
+<header>
+  <h1>Portafolio de Evidencias</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="PF02.html">PF02</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <div class="blog-container">
+    <article class="blog-post">
+<h2>ACTIVIDAD 03 - Interpretación y traducción de políticas de filtrado en iptables</h2>
+
+      Carlos René Castillo Olvera – 182033</p>
+
+      <p><strong>Materia:</strong> Seguridad Informática (CNO V)<br>
+      <strong>Fecha:</strong> 03/02/2026<br>
+      <strong>Docente:</strong> Adolfo M.</p>
+
+      <hr>
+
+
+<h2>Flujo del paquete</h2>
+<p>
+Cuando un paquete llega al sistema, primero pasa por una tabla,<br>
+después por una cadena,<br>
+y finalmente se ejecuta una regla/acción (target).
+</p>
+
+<hr>
+
+<h2>Relaciona cada tabla con su propósito principal</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Tabla</th>
+            <th>Propósito principal</th>
+            <th>Ejemplo de uso (1 palabra o frase corta)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>FILTER</td>
+            <td>Filtrado de paquetes</td>
+            <td>Permitir o bloquear tráfico</td>
+        </tr>
+        <tr>
+            <td>NAT</td>
+            <td>Traducción de direcciones</td>
+            <td>NAT o Port Forwarding</td>
+        </tr>
+        <tr>
+            <td>MANGLE</td>
+            <td>Modificación avanzada de paquetes</td>
+            <td>Cambiar cabeceras</td>
+        </tr>
+        <tr>
+            <td>RAW</td>
+            <td>Excepciones al seguimiento de conexiones</td>
+            <td>Paquetes no inspeccionados</td>
+        </tr>
+        <tr>
+            <td>SECURITY</td>
+            <td>Aplicar etiquetas de seguridad</td>
+            <td>Contextos adicionales (SELinux)</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h2>Anatomía de un comando iptables</h2>
+
+<p><strong>Comando corregido:</strong></p>
+<p>
+iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
+</p>
+
+<p><strong>Este comando permite:</strong></p>
+<p>
+Permite tráfico TCP hacia los puertos 80 (HTTP) y 443 (HTTPS).
+</p>
+
+<hr>
+
+<h2>Variables y opciones comunes</h2>
+
+<p>a) Limitar intentos por minuto:</p>
+<p>-m limit --limit 5/minute</p>
+
+<p>b) Filtrar por IP de origen:</p>
+<p>-s 192.168.1.10</p>
+
+<p>c) Ver solo números (sin resolución DNS ni puertos):</p>
+<p>iptables -L -n</p>
+
+<p>d) Ver reglas con contadores (paquetes y bytes):</p>
+<p>iptables -L -v</p>
+
+<hr>
+
+<h2>¿Qué hace esta regla?</h2>
+
+<p>
+iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \<br>
+-m state --state NEW,ESTABLISHED -j ACCEPT
+</p>
+
+<p><strong>Explicación:</strong></p>
+<ul>
+    <li>Permite tráfico TCP entrante</li>
+    <li>A través de la interfaz eth0</li>
+    <li>Hacia los puertos:
+        <ul>
+            <li>22 (SSH)</li>
+            <li>80 (HTTP)</li>
+            <li>443 (HTTPS)</li>
+        </ul>
+    </li>
+    <li>Solo si la conexión es:
+        <ul>
+            <li>NUEVA (NEW)</li>
+            <li>O ya establecida (ESTABLISHED)</li>
+        </ul>
+    </li>
+</ul>
+
+<hr>
+
+<h2>Permitir tráfico HTTP entrante</h2>
+<p>
+iptables -A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+</p>
+
+<hr>
+
+<h2>Permitir todo el tráfico saliente</h2>
+<p>
+iptables -A OUTPUT -j ACCEPT
+</p>
+
+<hr>
+
+<h2>Permitir SSH solo desde la IP 192.168.1.50</h2>
+<p>
+iptables -A INPUT -p tcp -s 192.168.1.50 --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+</p>
+
+<hr>
+
+<h2>Permitir tráfico TCP entrante a puertos 80 y 443 solo si es conexión establecida o relacionada</h2>
+<p>
+iptables -A INPUT -p tcp -m multiport --dports 80,443 \<br>
+-m state --state ESTABLISHED,RELATED -j ACCEPT
+</p>
+
+<hr>
+
+<h2>Permitir tráfico TCP entrante por eth0 a 22, 80 y 443, registrar intentos y permitir solo NEW y ESTABLISHED</h2>
+
+<p>
+iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \<br>
+-m state --state NEW,ESTABLISHED -j LOG --log-prefix "Intento de conexión: "
+</p>
+
+<p>
+iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \<br>
+-m state --state NEW,ESTABLISHED -j ACCEPT
+</p>
+
+<p><strong>Explicación:</strong></p>
+<ol>
+    <li>Primero registra el intento en los logs.</li>
+    <li>Después permite la conexión si cumple las condiciones.</li>
+</ol>
+
+<hr>
+
+<!-- BOTÓN PDF -->
+      <a href="docs/182033-ACT03.pdf" download>
+        <button>Descargar Documento Completo en PDF</button>
+      </a>
+
+      </article>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 - Seguridad Informática</p>
+</footer>
+
+</body>
+</html>

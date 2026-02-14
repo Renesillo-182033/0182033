@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 01 - NotPetya | Seguridad Informática</title>
+
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/act.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Portafolio de Evidencias</h1>
+  <nav>
+    <ul>
+      <li><a href="d:\Nueva carpeta\cno v\portafolio\index.html">Inicio</a></li>
+      <li><a href="d:\Nueva carpeta\cno v\portafolio\PF02.html">PF02</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="blog-container">
+    <article class="blog-post">
+
+      <h2>ACTIVIDAD 01 - Análisis de un ciberataque real y su impacto empresarial</h2>
+
+      <p><strong>Integrantes:</strong><br>
+      Edwin Admael Castillo Gómez – 181700<br>
+      Diego Osvaldo Hernández Fernández – 182217<br>
+      Carlos René Castillo Olvera – 182033</p>
+
+      <p><strong>Materia:</strong> Seguridad Informática (CNO V)<br>
+      <strong>Fecha:</strong> 30/01/2026<br>
+      <strong>Docente:</strong> Adolfo M.</p>
+
+      <hr>
+
+      <h3>Introducción</h3>
+      <p>
+      El ciberataque de NotPetya de 2017 es uno de los incidentes de ciberseguridad
+mas destructivos de la historia moderna, no solo por su alcance global, sino por
+su verdadera naturaleza: un gran sabotaje disfrazado de ransomware. A
+diferencia de otros ataques, NotPetya fue únicamente diseñado para causar
+interrupción operativa masiva, afectando infraestructuras criticas y cadenas de
+suministro internacionales en tan solo unas horas.
+
+      </p>
+
+      <p>
+      En el presente trabajo analizamos el impacto del malware NotPetya en la
+empresa Maersk, el mayor operador marítimo de transporte marítimo de
+contenedores a nivel mundial, cuya operación global fue paralizada casi por
+completo. A través de una línea del tiempo, una evaluación técnica del ataque,
+el análisis del impacto bajo el modelo CIA, el cálculo de pérdidas económicas,
+entre otros criterios, se busca comprender como diversas fallas técnicas,
+operativas y estratégicas permitió que el incidente NotPetya localizado en
+Ucrania escalara tanto hasta casi destruir a Maersk.
+      </p>
+
+      <p>
+        Para comenzar, cabe recalcar que el caso NotPetya – Maersk permite
+comprender las implicaciones reales de lo que es la falta de resiliencia digital en
+organizaciones altamente interconectadas y dependientes de las tecnologías de
+la información.
+      </p>
+
+      <hr>
+
+      <h3>Línea del Tiempo NotPetya - Maersk (2017)</h3>
+      <p>
+  <a href="https://prezi.com/view/m0VILbIscfj2ph5YluT4/?referral_token=m92o20lnB3FN" target="_blank" rel="noopener">
+    Ver línea del tiempo NotPetya – Maersk (Prezi)
+  </a>
+</p>
+
+
+
+      <h3>1. Contexto General del Ataque</h3>
+
+      <p><strong>Año, país y entidad afectada</strong><br>
+
+      <p>
+        <strong>Año del incidente:</strong>Junio de 2017 (el brote principal comenzó el 27 de junio,
+        víspera del Día de la Constitución en Ucrania).<br>
+
+        <strong>País de origen/Impacto inicial:</strong> Ucrania fue el epicentro (objetivo
+        estratégico). El ataque se propagó globalmente en cuestión de horas. <br>
+
+        <strong>Origen del brote (Paciente Cero):</strong> La empresa tecnológica Linkos Group,
+        desarrolladora del software contable M.E.Doc. La cual los atacantes
+        comprometieron sus servidores de actualización para distribuir el malware
+        NotPetya. Dado que M.E.Doc es el software estándar y obligatorio para el
+        pago de impuestos en Ucrania, la infección se expandió de forma inmediata
+        a todas las empresas que operaban en dicho país. <br>
+
+        <strong>Empresa afectada:</strong> A.P. Møller-Mærsk (Maersk), la empresa de logística y
+        transporte de contenedores más grande del mundo, con sede en Dinamarca.
+      </p>
+
+      <ul>
+  <li>
+    <strong>Alcance del daño en Maersk:</strong>
+    El ataque paralizó 76 terminales portuarias en todo el mundo y afectó a 
+    800 centros de datos, 1,200 aplicaciones, aproximadamente 45,000 laptops 
+    y 4,000 servidores.
+  </li>
+<br>
+  <li>
+    <strong>Otras empresas afectadas (Víctimas globales):</strong>
+    Además de Maersk, el ataque impactó a corporaciones como FedEx 
+    (a través de TNT Express), la farmacéutica Merck, la constructora 
+    francesa Saint-Gobain, la alimentaria Mondelez y el fabricante 
+    de bienes de consumo Reckitt Benckiser.
+  </li>
+</ul>
+
+<p><strong>Condiciones de ciberseguridad previas</strong><br>
+
+      <p>
+        El ataque no fue un evento aislado, sino la culminación de una campaña de
+        sabotaje del grupo Sandworm (Unidad 74455 del GRU ruso). Este grupo,
+        identificado por dejar referencias a la novela Dune en su código, utilizó a
+        Ucrania como laboratorio tras ejecutar los primeros apagones cibernéticos de
+        la historia en 2015 y 2016.<br>
+        
+        Bajo este acecho, Maersk operaba con debilidades críticas:<br>
+
+        <strong>Centralización de la Identidad (Active Directory): </strong> Maersk utilizaba un único
+        "bosque" de AD global sin segmentación efectiva. Al caer una oficina (Odessa), el
+        atacante obtuvo automáticamente las "llaves maestras" de toda la red mundial,
+        permitiendo que un problema local se volviera una parálisis global en minutos.<br>
+
+        <strong>Gestión de Parches y Legado de EternalBlue: </strong>Pese a existir el parche MS17-010
+        desde marzo de 2017, la inmensa infraestructura de Maersk dificultó una
+        actualización total. Esto dejó la puerta abierta para que el exploit EternalBlue
+        propagara el malware de forma automatizada.<br>
+
+        <strong>Dependencia Legal (El Caballo de Troya): </strong>Maersk estaba obligada por ley a usar
+        M.E.Doc para operar en Ucrania. Sandworm aprovechó esta confianza para
+        comprometer la cadena de suministro, insertando el malware en una
+        actualización legítima que evadió los perímetros de seguridad de la compañía.<br>
+
+        <strong>Factores que facilitaron el ataque: </strong>El éxito de NotPetya en Maersk no fue un solo error, sino una combinación de
+        fallas en tres niveles:<br>
+      </p>
+
+      <ol>
+  <li>
+    <strong>Falla Técnica (Cadena de Suministro):</strong>
+    El grupo Sandworm (GRU) comprometió las actualizaciones del software M.E.Doc.
+    Maersk instaló inadvertidamente el malware con privilegios de administrador.
+    NotPetya utilizó EternalBlue y MimiKatz para propagarse de forma automatizada
+    por toda la red global en minutos.
+  </li>
+
+  <li>
+    <strong>Falla Humana / Operativa:</strong>
+    Existía una gestión deficiente de privilegios. El exceso de permisos de
+    administrador local permitió que el malware robara credenciales de red
+    de la memoria de las estaciones de trabajo, facilitando el control total
+    del Active Directory.
+  </li>
+
+  <li>
+    <strong>Falla Política / Estratégica:</strong>
+    Se priorizó la eficiencia operativa sobre la resiliencia. Al no segmentar
+    lógicamente la red de Ucrania (zona de alto riesgo geopolítico) del resto
+    del mundo, un incidente en una oficina regional en Odessa paralizó
+    terminales portuarias globales en Los Ángeles y Róterdam.
+  </li>
+</ol>
+
+
+
+      <h3>2. Tabla Técnica del Ataque: NotPetya</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Elemento</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tipo de ataque</strong></td>
+      <td>Wiper Malware / Supply Chain Attack. Sabotaje destructivo bajo apariencia de ransomware.</td>
+    </tr>
+
+    <tr>
+      <td><strong>Actor atacante</strong></td>
+      <td>Sandworm (APT44 / GRU). Unidad de inteligencia militar rusa.</td>
+    </tr>
+
+    <tr>
+      <td><strong>Vector de entrada</strong></td>
+      <td>Compromiso de cadena de suministro. Servidor de actualizaciones del software M.E.Doc.</td>
+    </tr>
+
+    <tr>
+      <td><strong>Vulnerabilidad</strong></td>
+      <td>CVE-2017-010 (EternalBlue): Exploit de SMBv1 y uso de MimiKatz para robo de credenciales.</td>
+    </tr>
+
+    <tr>
+      <td><strong>Etapas (MITRE ATT&CK)</strong></td>
+      <td>
+        Acceso: T1195.002 (Supply Chain)<br>
+        Ejecución: T1072 (Deployment Tools)<br>
+        Movimiento Lateral: T1021.002 (Admin Shares)<br>
+        Impacto: T1485 (Data Destruction)
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>Sistemas Afectados</strong></td>
+      <td>Active Directory Global, ERP, Gestión de Terminales y aproximadamente 49,000 equipos (servidores y PCs).</td>
+    </tr>
+
+    <tr>
+      <td><strong>Duración</strong></td>
+      <td>
+        Cifrado: &lt; 1 hora.<br>
+        Restauración básica: 10 días.<br>
+        Normalización total: Semanas.
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>Detección y Respuesta</strong></td>
+      <td>
+        Detección: Basada en síntomas (destrucción del sistema).<br>
+        Respuesta: Aislamiento físico de red y reconstrucción manual del Active Directory mediante respaldo ubicado en Ghana.
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+      <hr>
+
+      <h3>3. Evaluación del Impacto (Modelo CIA)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Principio</th>
+      <th>Impacto</th>
+      <th>Evidencia Clave</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Confidencialidad</strong></td>
+      <td>Bajo</td>
+      <td>
+        El malware no fue diseñado para exfiltrar datos (sin funciones
+        de comando y control C2). El objetivo fue el sabotaje, no el espionaje.
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>Integridad</strong></td>
+      <td>Crítico</td>
+      <td>
+        Alteración irreversible del MBR y la MFT. El malware engañaba
+        al usuario simulando una reparación de disco (chkdsk)
+        mientras destruía el sistema operativo.
+      </td>
+    </tr>
+
+    <tr>
+      <td><strong>Disponibilidad</strong></td>
+      <td>Catastrófico</td>
+      <td>
+        Parálisis de 76 terminales portuarias. Maersk operó manualmente
+        con "papel y lápiz" durante días ante la caída total de los
+        sistemas de inventario y logística.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+      <hr>
+
+      <h3>4. Costo Económico Estimado</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo de costo</th>
+      <th>Descripción</th>
+      <th>Estimación (MXN)</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td><strong>Pérdidas operativas</strong></td>
+      <td>
+        Caída en ingresos por parálisis de 76 terminales portuarias,
+        interrupción de pedidos durante semanas y logística manual.
+      </td>
+      <td>$4,356,000,000<br>($240M USD)</td>
+    </tr>
+
+    <tr>
+      <td><strong>Daños reputacionales</strong></td>
+      <td>
+        Aunque Maersk recuperó clientes, el valor de la acción sufrió
+        volatilidad inmediata y se perdió confianza en la cadena de suministro.
+      </td>
+      <td>$544,500,000<br>($30M USD)</td>
+    </tr>
+
+    <tr>
+      <td><strong>Costos técnicos</strong></td>
+      <td>
+        Reinstalación de 4,000 servidores, 45,000 PCs,
+        consultoría de emergencia (KPMG/Microsoft) y
+        reconstrucción de Active Directory.
+      </td>
+      <td>$544,500,000<br>($30M USD)</td>
+    </tr>
+
+    <tr>
+      <td><strong>Costos legales / regulatorios</strong></td>
+      <td>
+        En 2017, GDPR aún no estaba en pleno vigor sancionador como hoy,
+        pero hubo costos de cumplimiento y auditorías extraordinarias.
+      </td>
+      <td>$0 (No hubo multas públicas significativas reportadas)</td>
+    </tr>
+
+    <tr>
+      <td><strong>Pago de rescate o extorsión</strong></td>
+      <td>
+        NotPetya era un Wiper. Aunque pedía $300 USD en BTC por máquina,
+        Maersk no pagó ya que no había forma técnica de recuperar los datos.
+      </td>
+      <td>$0</td>
+    </tr>
+
+    <tr>
+      <td><strong>TOTAL ESTIMADO</strong></td>
+      <td>
+        Pérdida total declarada por el grupo Maersk en su informe anual.
+      </td>
+      <td><strong>$5,445,000,000 MXN</strong></td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+      <hr>
+
+      <h3>5. Marcos Normativos Relacionados</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Marco Normativo</th>
+      <th>Control / Dominio</th>
+      <th>Impacto en la Mitigación</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>ISO 27001</td>
+      <td>A.12.6.1: Gestión de Vulnerabilidades</td>
+      <td>
+        La aplicación oportuna del parche MS17-010 habría bloqueado
+        el exploit EternalBlue y la propagación inicial.
+      </td>
+    </tr>
+
+    <tr>
+      <td>ISO 27001</td>
+      <td>A.13.1.1: Segmentación de Red</td>
+      <td>
+        Aislar lógicamente las oficinas de Ucrania habría evitado que
+        el brote local infectara los 800 centros de datos globales.
+      </td>
+    </tr>
+
+    <tr>
+      <td>NIST CSF</td>
+      <td>PR.AC-4: Mínimo Privilegio</td>
+      <td>
+        Restringir permisos administrativos y proteger procesos de memoria (LSASS)
+        habría neutralizado el robo de credenciales vía MimiKatz.
+      </td>
+    </tr>
+
+    <tr>
+      <td>NIST CSF</td>
+      <td>ID.SC-1: Riesgo de Cadena de Suministro</td>
+      <td>
+        Evaluar la seguridad de M.E.Doc y aplicar "Sandboxing"
+        a sus actualizaciones habría detectado el malware antes de su ejecución.
+      </td>
+    </tr>
+
+    <tr>
+      <td>GDPR</td>
+      <td>Art. 32: Disponibilidad y Resiliencia</td>
+      <td>
+        Exige la capacidad de restaurar datos tras un incidente.
+        La falta de backups offline funcionales habría supuesto multas
+        de hasta el 4% de la facturación.
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<br>
+<p>
+Si Maersk hubiera tenido estos controles maduros, el impacto se habría reducido significativamente. 
+En términos de <strong>prevención</strong>, el uso de herramientas de escaneo constante 
+(NIST PR.IP-12) habría identificado los sistemas sin el parche de Microsoft mucho antes 
+de junio de 2017, bloqueando la vulnerabilidad explotada.<br> En cuanto a la 
+<strong>contención</strong>, la implementación de una arquitectura de "Zero Trust" o una 
+segmentación robusta (ISO 27001 A.13.1.1) habría funcionado como un verdadero 
+"muro de fuego", confinando el ataque únicamente a los servidores que utilizaban 
+M.E.Doc en Ucrania y protegiendo las terminales portuarias globales. Finalmente, 
+desde la perspectiva de <strong>recuperación y resiliencia</strong>, el incidente de Ghana 
+demostró que Maersk no contaba con backups offline actualizados para sus 
+controladores de dominio; el control ISO 27001 A.17.1.2 (Continuidad de TI) 
+exige precisamente redundancia independiente de la misma red infectada, 
+lo que habría acelerado la restauración de los servicios críticos.
+</p>
+
+      <hr>
+
+      <h3>6. Lecciones Aprendidas</h3>
+
+     <p>
+El caso de NotPetya demostró que las mayores fallas no fueron únicamente técnicas, sino también de gestión. 
+Maersk mantenía sistemas obsoletos, parches sin aplicar y, sobre todo, una red global sin segmentación, lo que permitió 
+que el malware se propagara en minutos entre distintos países. Además, sus respaldos no estaban preparados para un 
+escenario extremo en el que todos los controladores de dominio fueran destruidos simultáneamente. A nivel organizacional, 
+la ciberseguridad no era una prioridad estratégica: los planes de mejora existían, pero no se ejecutaron porque no 
+impactaban directamente en los indicadores de desempeño de los directivos. También se evidenció el riesgo de confiar 
+en proveedores sin controles sólidos, como ocurrió con el software ucraniano comprometido.<br> Este ataque dejó claro que 
+prácticas como la segmentación de redes, la actualización constante de sistemas, la aplicación rigurosa de parches, 
+los respaldos aislados y los planes de recuperación probados pueden reducir drásticamente el impacto de un incidente. 
+La seguridad debe integrarse en la estrategia empresarial, con apoyo ejecutivo, monitoreo continuo y controles como 
+autenticación multifactor y modelos de acceso restringido.<br> Para México y Latinoamérica, las lecciones son aún más 
+relevantes, ya que muchas organizaciones operan con infraestructura antigua, menor inversión en seguridad y alta 
+dependencia de proveedores externos. Es fundamental modernizar sistemas, separar redes críticas, mantener copias de 
+seguridad fuera de línea, capacitar al personal y exigir estándares de seguridad a terceros. La continuidad del negocio 
+debe planearse considerando que un ataque puede paralizar operaciones completas. NotPetya demostró que la ciberseguridad 
+no es solo un tema técnico, sino un factor clave para la estabilidad operativa, económica e incluso nacional.
+</p>
+
+
+      <hr>
+
+      <h3>Conclusiones</h3>
+      <p>
+El presente análisis del ataque NotPetya a la empresa demuestra que la magnitud del impacto no fue consecuencia 
+de una única vulnerabilidad, sino del efecto acumulativo de deficiencias técnicas, operativas y de gobierno en 
+seguridad de la información. La ausencia de una segmentación adecuada, la falta de aplicación oportuna de parches 
+de seguridad y la dependencia de un proveedor comprometido generaron un escenario propicio para la propagación 
+global del malware en un periodo muy corto de tiempo. <br> Desde la perspectiva del modelo CIA, se observa que el 
+ataque tuvo un impacto crítico en la integridad y catastrófico en la disponibilidad de los sistemas, mientras que 
+la confidencialidad no fue el objetivo principal de los atacantes. Las pérdidas económicas, operativas y 
+reputacionales posteriores al incidente evidencian cómo la indisponibilidad de los sistemas puede generar 
+consecuencias devastadoras, capaces incluso de comprometer la continuidad de una empresa.<br> Finalmente, el caso 
+NotPetya refuerza la necesidad de que la ciberseguridad sea considerada un elemento estratégico dentro del 
+gobierno corporativo y no únicamente un asunto técnico, especialmente en organizaciones grandes, complejas y 
+altamente interconectadas.
+</p>
+
+
+      <hr>
+
+      <h3>Referencias y bibliografía</h3>
+
+<ul>
+  <li>
+    CISA (Cybersecurity & Infrastructure Security Agency). (2017, 1 de julio). 
+    <em>Petya Ransomware (Alert TA17-181A)</em>. 
+    <a href="https://www.cisa.gov/news-events/alerts/2017/07/01/petya-ransomware" target="_blank">
+      https://www.cisa.gov/news-events/alerts/2017/07/01/petya-ransomware
+    </a>
+  </li>
+
+  <li>
+    ENISA (European Union Agency for Cybersecurity). (2017). 
+    <em>Analysis of the NotPetya/ExPetr cyber-attack: Lessons for the EU</em>. 
+    <a href="https://www.enisa.europa.eu/publications/enisa-threat-landscape-report-2017" target="_blank">
+      https://www.enisa.europa.eu/publications/enisa-threat-landscape-report-2017
+    </a>
+  </li>
+
+  <li>
+    MITRE ATT&CK. (2023). 
+    <em>NotPetya (S0368) - Software Profile</em>. 
+    <a href="https://attack.mitre.org/software/S0368/" target="_blank">
+      https://attack.mitre.org/software/S0368/
+    </a>
+  </li>
+
+  <li>
+    CrowdStrike. (2017, 29 de junio). 
+    <em>NotPetya technical analysis: A triple threat</em>. 
+    <a href="https://www.crowdstrike.com/blog/petrwrap-ransomware-technical-analysis-triple-threat-file-encryption-mft-encryption-credential-theft/" target="_blank">
+      https://www.crowdstrike.com/blog/petrwrap-ransomware-technical-analysis-triple-threat-file-encryption-mft-encryption-credential-theft/
+    </a>
+  </li>
+
+  <li>
+    Kaspersky Lab. (2017, 27 de junio). 
+    <em>Schrödinger’s Pet(ya)</em>. Securelist. 
+    <a href="https://securelist.com/schrodingers-petya/78870/" target="_blank">
+      https://securelist.com/schrodingers-petya/78870/
+    </a>
+  </li>
+
+  <li>
+    A.P. Møller - Mærsk. (2018). 
+    <em>Annual Report 2017</em>. 
+    <a href="https://investor.maersk.com/static-files/d533735a-5df7-423c-8611-d4a2c3bf31b0" target="_blank">
+      https://investor.maersk.com/static-files/d533735a-5df7-423c-8611-d4a2c3bf31b0
+    </a>
+  </li>
+
+  <li>
+    Greenberg, A. (2018, 22 de agosto). 
+    <em>The Untold Story of NotPetya, the Most Devastating Cyberattack in History</em>. Wired. 
+    <a href="https://www.wired.com/story/notpetya-cyberattack-ukraine-russia-code-crashed-the-world/" target="_blank">
+      https://www.wired.com/story/notpetya-cyberattack-ukraine-russia-code-crashed-the-world/
+    </a>
+  </li>
+
+  <li>
+    The Hacker News. (2017, 27 de junio). 
+    <em>NotPetya: Everything you need to know about the global attack</em>. 
+    <a href="https://thehackernews.com/2017/06/petya-ransomware-attack.html" target="_blank">
+      https://thehackernews.com/2017/06/petya-ransomware-attack.html
+    </a>
+  </li>
+
+  <li>
+    O'Donnell, A. (2024, 18 de junio). 
+    <em>The breach cost how much? How CISOs can talk effectively about the toll of a cyber incident</em>. CSO Online. 
+    <a href="https://www.csoonline.com/article/3844334/the-breach-cost-how-much-how-cisos-can-talk-effectively-about-the-toll-of-a-cyber-incident.html" target="_blank">
+      https://www.csoonline.com/article/3844334/the-breach-cost-how-much-how-cisos-can-talk-effectively-about-the-toll-of-a-cyber-incident.html
+    </a>
+  </li>
+
+  <li>
+    Executive Summary. (s/f). 
+    <em>A Columbia University case study</em>. Columbia.edu. Recuperado el 31 de enero de 2026. 
+    <a href="https://www.sipa.columbia.edu/sites/default/files/2022-11/NotPetya%20Final.pdf" target="_blank">
+      https://www.sipa.columbia.edu/sites/default/files/2022-11/NotPetya%20Final.pdf
+    </a>
+  </li>
+
+</ul>
+
+
+      <br>
+
+      <!-- BOTÓN PDF -->
+      <a href="../docs/act01-Equipo5.pdf" download>
+        <button>Descargar Documento Completo en PDF</button>
+      </a>
+
+    </article>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 - Seguridad Informática</p>
+</footer>
+
+</body>
+</html>
