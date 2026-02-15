@@ -95,3 +95,31 @@ th {
 tr:nth-child(even) {
   background-color: #0b1220;
 }
+
+/* ===== TABLA GRANDE ACTIVIDAD 05 ===== */
+
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+.table-wrapper table {
+  min-width: 1200px; /* evita que se comprima feo */
+  table-layout: fixed;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+  word-wrap: break-word;
+  white-space: normal;
+  font-size: 0.85rem; /* reduce ligeramente texto */
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #38bdf8;
+  border-radius: 10px;
+}
