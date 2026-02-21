@@ -222,11 +222,3 @@ pre code {
   border: 1px solid #1e293b;
   margin: 2rem 0;
 }
-
-video {
-  width: 30%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-}
-
