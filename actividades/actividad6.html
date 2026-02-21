@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Act. 06 – IIPsec y VPN</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/act.css">
+</head>
+
+<body>
+<header>
+  <h1>Portafolio de Evidencias</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="PF02.html">PF02</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="blog-container">
+    <article class="blog-post">
+        <h2>ACTIVIDAD 06 - IPsec y VPN</h2>
+
+      Carlos René Castillo Olvera – 182033</p>
+
+      <p><strong>Materia:</strong> Seguridad Informática (CNO V)<br>
+      <strong>Fecha:</strong> 16/02/2026<br>
+      <strong>Docente:</strong> Adolfo M.</p>
+
+      <hr>
+
+      <h2>Objetivo de la práctica</h2>
+      <p>
+En esta practica se aprendió a crear una VPN IPsec Site-to-Site en Cisco Packet Tracer,
+ conectando dos redes de manera segura a través de un túnel cifrado. 
+</p>
+
+<h2>Descargar e instalar cisco packet tracer</h2>
+<p>Para la practica ocupamos descargar e instalar Cisco Packet Tracer,
+  despues iniciar secion con correo y contraseña o si no tienes cuenta crear una.
+</p>
+<a href="https://www.netacad.com/resources/lab-downloads?courseLang=es-XL" target="_blank">>
+  Link para descargar Cisco Packet Tracer.
+</a>
+
+<hr>
+<h2>Video</h2>
+<p>Te puedes ir guiando de este video para hacer la práctica.</p>
+<div class="video-container"></div>
+<iframe width="560" height="315" 
+src="https://www.youtube.com/watch?v=RZ4RreDjhhk" 
+title="YouTube video player" 
+frameborder="0" 
+allowfullscreen>
+</iframe>
+</div>
+
+<h2>Paso 1: Conexiones de equipos</h2>
+
+<ul>
+  <li>PC0 a Switch0: Fa0 – Fa19</li>
+  <li>Switch0 a R1: G0/1 - G0/1</li>
+  <li>R1 a ISP: G0/0 – G0/0</li>
+  <li>ISP a R2: G0/1 – G0/0</li>
+  <li>R2 a Switch1: G0/1 – G0/1</li>
+  <li>Switch1 a PC1: Fa10 – Fa0</li>
+</ul>
+
+<img src="conexionesact6.PNG" alt="Conexiones">
+
+<hr>
+
+<h2>Paso 2: Configurar IPs a los equipos</h2>
+
+<ul>
+  <li>PC0
+    <ul>
+      <li>192.168.1.10</li>
+    </ul>
+  </li>
+  
+  <li>R1
+    <ul>
+      <li>G0/1: 192.168.1.1</li>
+      <li>G0/0: 209.165.100.1</li>
+    </ul>
+  </li>
+  
+  <li>ISP
+    <ul>
+      <li>G0/0: 209.165.100.2</li>
+      <li>G0/1: 209.165.200.2</li>
+    </ul>
+  </li>
+  
+  <li>R2
+    <ul>
+      <li>G0/0: 209.165.200.1</li>
+      <li>G0/1: 192.168.3.1</li>
+    </ul>
+  </li>
+  
+  <li>PC1
+    <ul>
+      <li>192.168.3.10</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2>Paso 3: Configurar R1</h2>
+
+<p>Los siguientes comandos se ponen uno por uno dentro del CLI de R1</p>
+<pre><code>
+enable
+configure terminal
+hostname R1
+interface g0/1
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+interface g0/0
+ip address 209.165.100.1 255.255.255.0
+no shutdown
+exit
+ip route 0.0.0.0 0.0.0.0 209.165.100.2
+</code></pre>
+<h3>Ejemplo:</h3>
+<img src="confR1act6.PNG" alt="Configuracion de R1">
+
+<hr>
+
+<h2>Paso 4: Configurar R2</h2>
+
+<p>Los siguientes comandos se ponen uno por uno dentro del CLI de R2</p>
+<pre><code>
+enable
+configure terminal
+hostname R2
+interface g0/1
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+interface g0/0
+ip address 209.165.200.1 255.255.255.0
+no shutdown
+ip route 0.0.0.0 0.0.0.0 209.165.200.2
+</code></pre>
+<h3>Ejemplo:</h3>
+<img src="confR2act6.PNG" alt="Configuracion de R2">
+
+<hr>
+
+<h2>Paso 5: Configurar ISP</h2>
+<p>Los siguientes comandos se ponen uno por uno dentro del CLI de ISP</p>
+<br>
+<pre><code>
+enable
+conf t
+hostname ISP
+interface g0/0
+ip address 209.165.100.2 255.255.255.0
+no shutdown
+interface g0/1
+ip address 209.165.200.2 255.255.255.0
+no shutdown
+ip route 0.0.0.0 0.0.0.0 209.165.200.1
+</code></pre>
+<h3>Ejemplo:</h3>
+<img src="confISPact6.PNG" alt="Configuracion de ISP">
+
+<hr>
+
+<h2>Paso 6: Después a cada Router (R1, R2, ISP) hacemos lo siguiente en el CLI:</h2>
+<pre><code>
+license boot module c1900 technology-package securityk9
+copy running-config startup-config
+reload
+show versión
+</code></pre>
+
+<h3>¿Qué paso aquí?</h3>
+<p>1. <strong>license boot module c1900 technology-package securityk9 </strong>
+Activa el paquete de seguridad del router. Habilita funciones como VPN, firewall e IPSec. En Packet Tracer
+casi no cambia nada, pero en routers reales sí.<br>
+2. <strong>copy running-config startup-config </strong>
+Guarda la configuración actual. Si no lo haces y reinicias el router, pierdes todo lo configurado.<br>
+3. <strong>reload </strong>
+Reinicia el router. Si guardaste la configuración antes, se conserva. Si no, se pierde.<br>
+4. <strong>show version </strong>
+Muestra información del router: versión del IOS, modelo, memoria, tiempo encendido y licencias activas. No
+cambia nada, solo muestra datos.<br>
+</p>
+
+<hr>
+
+<h2>Paso 7: En R1 ponemos los siguientes comandos:</h2>
+
+<br>
+<pre><code>
+enable
+configure terminal
+access-list 100 permit ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255
+crypto isakmp policy 10
+encryption aes 256
+authentication pre-share
+group 5
+exit
+crypto isakmp key secretkey address 209.165.200.1
+crypto ipsec transform-set R1->R2 esp-aes 256 esp-sha-hmac
+crypto map IPSEC-MAP 10 ipsec-isakmp
+set peer 209.165.200.1
+set pfs group5
+exit
+interface g0/0
+crypto map IPSEC-MAP
+</code></pre>
+<h3>¿Qué hacen estos comandos?</h3>
+<ol>
+  <li>
+    Activa el modo privilegiado (enable) y entra en la configuración global (configure terminal).
+  </li>
+
+  <li>
+    Crea una lista de acceso 100 que permite el tráfico IP desde la red 192.168.1.0/24 hacia 192.168.3.0/24. 
+    Esto define qué tráfico se incluirá en la VPN.
+  </li>
+
+  <li>
+    Configura una política ISAKMP (para negociar la VPN) con prioridad 10, usando cifrado AES de 256 bits, 
+    autenticación con clave compartida y grupo Diffie-Hellman 5.
+  </li>
+
+  <li>
+    Define la clave precompartida ("secretkey") para el peer con IP 209.165.200.1.
+  </li>
+
+  <li>
+    Crea un conjunto de transformaciones IPsec llamado "R1-&gt;R2" que usa AES-256 para cifrado y SHA para integridad.
+  </li>
+
+  <li>
+    Configura un crypto map llamado IPSEC-MAP, que define al peer 209.165.200.1, activa Perfect Forward 
+    Secrecy (PFS) usando grupo 5 y aplica el conjunto de transformaciones.
+  </li>
+
+  <li>
+    Aplica este crypto map a la interfaz GigabitEthernet 0/0 para que todo el tráfico permitido por la lista 
+    de acceso pase por la VPN.
+  </li>
+</ol>
+<h3>Ejemplo:</h3>
+<img src="conf2R1act6.PNG" alt="Configuracion de R1">
+
+<hr>
+
+<h2>Paso 8: En R2 ponemos los siguientes comandos:</h2>
+<pre><code>
+en
+conf t
+access-list 100 permit ip 192.168.3.0 0.0.0.255 192.168.1.0 0.0.0.255
+crypto isakmp policy 10
+encryption aes 256
+authentication pre-share
+group 5
+exit
+crypto isakmp key secretkey address 209.165.100.1
+conf t
+crypto ipsec transform-set R2->R1 esp-aes 256 esp-sha-hmac
+crypto map IPSEC-MAP 10 ipsec-isakmp
+set peer 209.165.100.1
+set pfs group5
+set security-association lifetime seconds 86400
+set transform-set R2->R1
+match address 100
+int g0/0
+crypto map IPSEC-MAP
+</code></pre>
+<h3>¿Qué hacen estos comandos?</h3>
+<ol>
+  <li>
+    Crea una lista de acceso que define qué tráfico será enviado por la VPN, en este caso el tráfico entre la red
+    192.168.3.0/24 y la 192.168.1.0/24.
+  </li>
+
+  <li>
+    Configura la política ISAKMP para negociar la VPN, usando cifrado AES de 256 bits, autenticación por clave
+    compartida y grupo Diffie-Hellman 5 para el intercambio seguro de claves.
+  </li>
+
+  <li>
+    Define la clave compartida “secretkey” para autenticarse con el peer cuya IP es 209.165.100.1.
+  </li>
+
+  <li>
+    Crea un conjunto de transformaciones IPsec llamado R2-&gt;R1, usando AES-256 para cifrado y SHA para
+    integridad de los datos.
+  </li>
+
+  <li>
+    Configura un mapa de criptografía llamado IPSEC-MAP que especifica el peer, activa PFS con grupo 5, define
+    la duración de la asociación de seguridad en 86400 segundos, aplica el conjunto de transformaciones y asocia
+    la lista de acceso.
+  </li>
+
+  <li>
+    Aplica el crypto map a la interfaz GigabitEthernet 0/0, activando así el túnel VPN para todo el tráfico que
+    coincida con la lista de acceso.
+  </li>
+</ol>
+<h3>Ejemplo:</h3>
+<img src="conf2R2act6.PNG" alt="Configuracion de R2">
+
+<hr>
+
+<h3>Conclusión:</h3>
+<p>
+  La práctica permitió configurar y verificar un túnel VPN IPsec site-to-site entre dos redes separadas (192.168.1.0/24 y
+192.168.3.0/24) a través de un ISP simulado. Se logró que el tráfico entre PC0 y PC1 viajara de forma segura mediante
+cifrado AES-256 y autenticación SHA, usando ISAKMP para la negociación de claves, una clave precompartida y
+Perfect Forward Secrecy para proteger la confidencialidad y la integridad de los datos.
+Esto demuestra cómo se pueden interconectar redes remotas mediante VPN, asegurando que los paquetes solo sean
+accesibles para los dispositivos autorizados y que el tráfico no pueda ser interceptado
+</p>
+<img src="ipsecvpn.PNG" alt="Resultado">
+
+<hr>
+
+
+
+<!-- BOTÓN PDF -->
+      <a href="../docs/182033-ACT06.pdf" download>
+        <button>Descargar Documento Completo en PDF</button>
+      </a>
+
+      </article>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 - Seguridad Informática</p>
+</footer>
+</body>
+</html>
