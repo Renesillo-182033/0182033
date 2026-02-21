@@ -86,9 +86,9 @@ y finalmente se ejecuta una regla/acción (target).
 <h2>Anatomía de un comando iptables</h2>
 
 <p><strong>Comando:</strong></p>
-<p>
+<pre><code>
 iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
-</p>
+</code></pre>
 
 <p><strong>Este comando permite:</strong></p>
 <p>
@@ -100,25 +100,25 @@ Permite tráfico TCP hacia los puertos 80 (HTTP) y 443 (HTTPS).
 <h2>Variables y opciones comunes</h2>
 
 <p>a) Limitar intentos por minuto:</p>
-<p>-m limit --limit 5/minute</p>
+<pre><code>-m limit --limit 5/minute</code></pre>
 
 <p>b) Filtrar por IP de origen:</p>
-<p>-s 192.168.1.10</p>
+<pre><code>-s 192.168.1.10</code></pre>
 
 <p>c) Ver solo números (sin resolución DNS ni puertos):</p>
-<p>iptables -L -n</p>
+<pre><code>iptables -L -n</code></pre>
 
 <p>d) Ver reglas con contadores (paquetes y bytes):</p>
-<p>iptables -L -v</p>
+<pre><code>iptables -L -v</code></pre>
 
 <hr>
 
 <h2>¿Qué hace esta regla?</h2>
 
-<p>
+<pre><code>
 iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \<br>
 -m state --state NEW,ESTABLISHED -j ACCEPT
-</p>
+</code></pre>
 
 <p><strong>Explicación:</strong></p>
 <ul>
@@ -142,45 +142,45 @@ iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \<br>
 <hr>
 
 <h2>Permitir tráfico HTTP entrante</h2>
-<p>
+<pre><code>
 iptables -A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
-</p>
+</code></pre>
 
 <hr>
 
 <h2>Permitir todo el tráfico saliente</h2>
-<p>
+<pre><code>
 iptables -A OUTPUT -j ACCEPT
-</p>
+</code></pre>
 
 <hr>
 
 <h2>Permitir SSH solo desde la IP 192.168.1.50</h2>
-<p>
+<pre><code>
 iptables -A INPUT -p tcp -s 192.168.1.50 --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
-</p>
+</code></pre>
 
 <hr>
 
 <h2>Permitir tráfico TCP entrante a puertos 80 y 443 solo si es conexión establecida o relacionada</h2>
-<p>
+<pre><code>
 iptables -A INPUT -p tcp -m multiport --dports 80,443 \<br>
 -m state --state ESTABLISHED,RELATED -j ACCEPT
-</p>
+</code></pre>
 
 <hr>
 
 <h2>Permitir tráfico TCP entrante por eth0 a 22, 80 y 443, registrar intentos y permitir solo NEW y ESTABLISHED</h2>
 
-<p>
+<pre><code>
 iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \<br>
 -m state --state NEW,ESTABLISHED -j LOG --log-prefix "Intento de conexión: "
-</p>
+</code></pre>
 
-<p>
+<pre><code>
 iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \<br>
 -m state --state NEW,ESTABLISHED -j ACCEPT
-</p>
+</code></pre>
 
 <p><strong>Explicación:</strong></p>
 <ol>
@@ -205,6 +205,7 @@ iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \<br>
 
 </body>
 </html>
+
 
 
 
