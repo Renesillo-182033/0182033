@@ -14,7 +14,7 @@
   <nav>
     <ul>
       <li><a href="..\index.html">Inicio</a></li>
-      <li><a href="..\PF02.html">PF02</a></li>
+      <li><a href="..\PF02.html">Parcial 1</a></li>
     </ul>
   </nav>
 </header>
@@ -29,8 +29,10 @@
       <p><strong>Materia:</strong> Seguridad Informática (CNO V)<br>
       <strong>Fecha:</strong> 04/02/2026<br>
       <strong>Docente:</strong> Adolfo M.</p>
+        <img src="port4.png" alt="Portada" align="center">
 
       <hr>
+        <h2>Introducción</h2>
 <p>
 Teniendo en cuenta la topología de red mostrada
 completa la tabla con las reglas de iptables que deberían
@@ -39,60 +41,63 @@ solicitadas. Las reglas, siempre que sea posible, deben
 determinar protocolo, dirección IP origen y destino,
 puerto/s origen y destino y el estado de la conexión.
 </p>
+<img src="iptables.PNG" alt="Portada" align="center"> 
 
 <p>Internet: 0.0.0.0<br>
 192.1.2.*<br>
 Servidor de correo: 192.1.2.10<br>
 Servidor Web: 192.1.2.11
 </p>
+<img src="act4.PNG" alt="Portada" align="center">
+        <hr>
 
 <h2>1. Política restrictiva</h2>
-<p>
+<pre><code>
 iptables -P INPUT DROP<br>
 iptables -P OUTPUT DROP<br>
 iptables -P FORWARD DROP
-</p>
+</code></pre>
 
 <h2>2. Permitir tráfico de conexiones ya establecidas</h2>
-<p>
+<pre><code>
 iptables -A INPUT   -m state --state ESTABLISHED,RELATED -j ACCEPT<br>
 iptables -A OUTPUT  -m state --state ESTABLISHED,RELATED -j ACCEPT<br>
 iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
-</p>
+</code></pre>
 
 <h2>3. Aceptar tráfico DNS (TCP) saliente de la red local</h2>
-<p>
+<pre><code>
 iptables -A FORWARD -p tcp \<br>
 -s 192.1.2.0/24 -d 0.0.0.0/0 \<br>
 --dport 53 -m state --state NEW -j ACCEPT
-</p>
+</code></pre>
 
 <h2>4. Aceptar correo entrante desde Internet al servidor de correo</h2>
-<p>
+<pre><code>
 iptables -A FORWARD -p tcp \<br>
 -s 0.0.0.0/0 -d 192.1.2.10 \<br>
 --dport 25 -m state --state NEW -j ACCEPT
-</p>
+</code></pre>
 
 <h2>5. Permitir correo saliente a Internet desde el servidor de correo</h2>
-<p>
+<pre><code>
 iptables -A FORWARD -p tcp \<br>
 -s 192.1.2.10 -d 0.0.0.0/0 \<br>
 --dport 25 -m state --state NEW -j ACCEPT
-</p>
+</code></pre>
 
 <h2>6. Aceptar conexiones HTTP desde Internet al servidor web</h2>
-<p>
+<pre><code>
 iptables -A FORWARD -p tcp \<br>
 -s 0.0.0.0/0 -d 192.1.2.11 \<br>
 --dport 80 -m state --state NEW -j ACCEPT
-</p>
+</code></pre>
 
 <h2>7. Permitir tráfico HTTP desde la red local a Internet</h2>
-<p>
+<pre><code>
 iptables -A FORWARD -p tcp \<br>
 -s 192.1.2.0/24 -d 0.0.0.0/0 \
-</p>
+</code></pre>
 <hr>
 <!-- BOTÓN PDF -->
       <a href="../docs/182033-ACT04.pdf" download>
@@ -108,6 +113,7 @@ iptables -A FORWARD -p tcp \<br>
 </footer>
 </body>
 </html>
+
 
 
 
