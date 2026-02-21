@@ -31,7 +31,126 @@
         <img src="port3.png" alt="Portada" align="center">
 
       <hr>
+<h2>Resumen de IPTables</h2>
 
+<h3>1. Concepto general</h3>
+<p>
+Cuando un paquete entra o sale de un sistema, el <strong>kernel</strong> lo procesa mediante <strong>tablas</strong> y <strong>cadenas</strong>, donde se aplican <strong>reglas</strong> que definen qué hacer con el paquete.
+</p>
+<ul>
+  <li><strong>Tabla (Table):</strong> conjunto de reglas con un propósito específico.</li>
+  <li><strong>Cadena (Chain):</strong> secuencia de reglas dentro de una tabla.</li>
+  <li><strong>Regla / Acción (Rule / Action):</strong> condición a evaluar y acción a ejecutar si se cumple.</li>
+</ul>
+
+<h3>2. Tablas principales y sus usos</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Tabla</th>
+      <th>Propósito</th>
+      <th>Ejemplo de uso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FILTER</td>
+      <td>Filtrado de paquetes (firewall principal)</td>
+      <td>Permitir o bloquear tráfico</td>
+    </tr>
+    <tr>
+      <td>NAT</td>
+      <td>Traducción de direcciones (Network Address Translation)</td>
+      <td>NAT o port forwarding</td>
+    </tr>
+    <tr>
+      <td>MANGLE</td>
+      <td>Modificación avanzada de paquetes (QoS, TTL)</td>
+      <td>Cambiar cabeceras de paquetes</td>
+    </tr>
+    <tr>
+      <td>RAW</td>
+      <td>Excepciones al seguimiento de conexiones</td>
+      <td>Paquetes que no deben ser inspeccionados</td>
+    </tr>
+    <tr>
+      <td>SECURITY</td>
+      <td>Aplicar etiquetas de seguridad (SELinux)</td>
+      <td>Contextos de seguridad adicionales</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>3. Cadenas comunes y su función</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Cadena (Chain)</th>
+      <th>Función</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>INPUT</td>
+      <td>Paquetes destinados al host local</td>
+    </tr>
+    <tr>
+      <td>OUTPUT</td>
+      <td>Paquetes generados por el host</td>
+    </tr>
+    <tr>
+      <td>FORWARD</td>
+      <td>Paquetes que atraviesan el host (rutado)</td>
+    </tr>
+    <tr>
+      <td>PREROUTING</td>
+      <td>Modificaciones antes de rutear (usado en NAT)</td>
+    </tr>
+    <tr>
+      <td>POSTROUTING</td>
+      <td>Modificaciones después del ruteo (usado en NAT)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>4. Acciones de las reglas (Targets / Policies)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Acción (Target)</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ACCEPT</td>
+      <td>Permitir el paquete</td>
+    </tr>
+    <tr>
+      <td>DROP</td>
+      <td>Desechar el paquete sin responder</td>
+    </tr>
+    <tr>
+      <td>REJECT</td>
+      <td>Bloquear y enviar mensaje ICMP de rechazo</td>
+    </tr>
+    <tr>
+      <td>LOG</td>
+      <td>Registrar en /var/log/messages o syslog</td>
+    </tr>
+    <tr>
+      <td>DNAT</td>
+      <td>Redirigir la IP de destino (usado en NAT)</td>
+    </tr>
+    <tr>
+      <td>SNAT / MASQUERADE</td>
+      <td>Modificar IP de origen (salida a Internet)</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<img src="iptables.PNG" alt="Portada" align="center">
+        <hr>
 
 <h2>Flujo del paquete</h2>
 <p>
@@ -205,6 +324,7 @@ iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \<br>
 
 </body>
 </html>
+
 
 
 
