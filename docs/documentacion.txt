@@ -1,0 +1,638 @@
+Currently scanning: Finished!   |   Screen View: Unique Hosts               
+                                                                             
+ 3 Captured ARP Req/Rep packets, from 3 hosts.   Total size: 180             
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+ 192.168.56.1    0a:00:27:00:00:27      1      60  Unknown vendor            
+ 192.168.56.100  08:00:27:89:5c:85      1      60  PCS Systemtechnik GmbH    
+ 192.168.56.104  08:00:27:91:e7:0a      1      60  PCS Systemtechnik GmbH    
+
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ sudo nmap -p- -sS -sV -sC -A -T4 192.168.56.100
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-21 21:31 CST
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for 192.168.56.100
+Host is up (0.00047s latency).
+All 65535 scanned ports on 192.168.56.100 are in ignored states.
+Not shown: 65535 closed tcp ports (reset)
+MAC Address: 08:00:27:89:5C:85 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Aggressive OS guesses: 2N Helios IP VoIP doorbell (96%), Advanced Illumination DCS-100E lighting controller (96%), AudioControl D3400 network amplifier (96%), British Gas GS-Z3 data logger (96%), Chamberlain myQ garage door opener (96%), Daikin DKN Cloud Wi-Fi Adaptor (96%), Daysequerra M4.2SI radio (96%), Denver Electronics AC-5000W MK2 camera (96%), Eve Cam (lwIP 2.1.0 - 2.2.0) (96%), Fatek FBs-CBEH PLC Ethernet communication board (96%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 1 hop
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.47 ms 192.168.56.100
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 45.68 seconds
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ sudo nmap -p- -sS -sV -sC -A -T4 192.168.56.104
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-21 21:33 CST
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for 192.168.56.104
+Host is up (0.0012s latency).
+Not shown: 65532 closed tcp ports (reset)
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 73:a4:8f:94:a2:20:68:50:5a:ae:e1:d3:60:8d:ff:55 (RSA)
+|   256 f3:1b:d8:c3:0c:3f:5e:6b:ac:99:52:80:7b:d6:b6:e7 (ECDSA)
+|_  256 ea:61:64:b6:3b:d3:84:01:50:d8:1a:ab:38:29:12:e1 (ED25519)
+80/tcp   open  http    nginx 1.14.2
+|_http-server-header: nginx/1.14.2
+|_http-title: Welcome to SNAKEOIL!
+8080/tcp open  http    nginx 1.14.2
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-title:  Welcome to Good Tech Inc.'s Snake Oil Project 
+|_http-server-header: nginx/1.14.2
+MAC Address: 08:00:27:91:E7:0A (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+Device type: general purpose|router
+Running: Linux 4.X|5.X, MikroTik RouterOS 7.X
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3
+OS details: Linux 4.15 - 5.19, OpenWrt 21.02 (Linux 5.4), MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   1.23 ms 192.168.56.104
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 82.38 seconds
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ ssh root@192.168.56.104                        
+The authenticity of host '192.168.56.104 (192.168.56.104)' can't be established.
+ED25519 key fingerprint is: SHA256:j6ytSalC59gdH0E3qXAhAky3XaaSGl9IeOeEML7+Imc
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.104' (ED25519) to the list of known hosts.
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+root@192.168.56.104's password: 
+Permission denied, please try again.
+root@192.168.56.104's password: 
+Permission denied, please try again.
+root@192.168.56.104's password: 
+Connection closed by 192.168.56.104 port 22
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ nc 192.168.56.104 80
+GET / HTTP/1.1
+Host:                                                                              
+┌──(rene㉿kali)-[~]
+└─$ Host: 192.168.56.104
+
+No se pudo encontrar la base de datos de command-not-found. Ejecute «sudo apt update» para rellenarla de información.
+Host:: no se encontró la orden
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ 
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ nc 192.168.56.104 80
+GET / HTTP/1.1
+Host: 192.168.                                                                              
+┌──(rene㉿kali)-[~]
+└─$ Host: 192.168.56.104
+No se pudo encontrar la base de datos de command-not-found. Ejecute «sudo apt update» para rellenarla de información.
+Host:: no se encontró la orden
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl http://192.168.56.104
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to SNAKEOIL!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to SNAKEOIL!</h1>
+<p>Congratulations! SNAKEOIL is set up properly!</p>
+
+<p>If you are lost with life, <a href="https://www.google.com">Google</a> can help.<br/></p>
+
+</body>
+</html>
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ nmap -sV 192.168.56.104
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-21 21:49 CST
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for 192.168.56.104
+Host is up (0.00094s latency).
+Not shown: 997 closed tcp ports (reset)
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+80/tcp   open  http    nginx 1.14.2
+8080/tcp open  http    nginx 1.14.2
+MAC Address: 08:00:27:91:E7:0A (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 7.75 seconds
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl http://192.168.56.104:8080
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title> Welcome to Good Tech Inc.'s Snake Oil Project </title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="/">Good Tech Inc</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/create">New Post</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        
+        
+    <h1> Welcome to Good Tech Inc.'s Snake Oil Project </h1>
+    
+        <a href="/1">
+            <h2>Introduction</h2>
+        </a>
+            <span class="badge badge-primary">2021-06-19 10:02:53</span>
+        <a href="/1/edit">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <hr>
+    
+        <a href="/2">
+            <h2>House Rules</h2>
+        </a>
+            <span class="badge badge-primary">2021-06-19 10:02:53</span>
+        <a href="/2/edit">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <hr>
+    
+        <a href="/4">
+            <h2>Useful Links</h2>
+        </a>
+            <span class="badge badge-primary">2021-08-18 00:29:46</span>
+        <a href="/4/edit">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <hr>
+    
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -I http://192.168.56.104:8080
+HTTP/1.1 200 OK
+Server: nginx/1.14.2
+Date: Sun, 22 Feb 2026 03:51:26 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 2882
+Connection: keep-alive
+
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ gobuster dir -u http://192.168.56.104 -w /usr/share/wordlists/dirb/common.txt
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://192.168.56.104
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+Progress: 4613 / 4613 (100.00%)
+===============================================================
+Finished
+===============================================================
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ gobuster dir -u http://192.168.56.104:8080 -w /usr/share/wordlists/dirb/common.txt
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://192.168.56.104:8080
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/01                   (Status: 200) [Size: 2193]
+/02                   (Status: 200) [Size: 2356]
+/04                   (Status: 200) [Size: 2324]
+/1                    (Status: 200) [Size: 2193]
+/2                    (Status: 200) [Size: 2356]
+/4                    (Status: 200) [Size: 2324]
+/create               (Status: 200) [Size: 2596]
+/login                (Status: 405) [Size: 64]
+/registration         (Status: 200) [Size: 29]
+/run                  (Status: 405) [Size: 178]
+/secret               (Status: 500) [Size: 37]
+/test                 (Status: 200) [Size: 17]
+/users                (Status: 200) [Size: 140]
+Progress: 4613 / 4613 (100.00%)
+===============================================================
+Finished
+===============================================================
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -X POST http://192.168.56.104:8080/login
+{"message": {"username": "Username field cannot be blank."}}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -X POST http://192.168.56.104:8080/run  
+{"message":"Please provide URL to request in the form url:port. Example: 127.0.0.1:12345","success":false}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -X POST http://192.168.56.104:8080/secret
+{"message": "The method is not allowed for the requested URL."}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -X POST -d "username=patrick&password=test" http://192.168.56.104:8080/login
+{"message": "Wrong credentials"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -v http://192.168.56.104:8080/secret
+*   Trying 192.168.56.104:8080...
+* Established connection to 192.168.56.104 (192.168.56.104 port 8080) from 192.168.56.103 port 57168 
+* using HTTP/1.x
+> GET /secret HTTP/1.1
+> Host: 192.168.56.104:8080
+> User-Agent: curl/8.17.0
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 500 INTERNAL SERVER ERROR
+< Server: nginx/1.14.2
+< Date: Sun, 22 Feb 2026 03:57:35 GMT
+< Content-Type: application/json
+< Content-Length: 37
+< Connection: keep-alive
+< 
+{"message": "Internal Server Error"}
+* Connection #0 to host 192.168.56.104:8080 left intact
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -b cookies.txt http://192.168.56.104:8080/secret
+{"message": "Internal Server Error"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -c cookies.txt -X POST -d"username=patrick&password=test" http://192.168.56.104:8080/login  
+{"message": "Wrong credentials"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -H "Autorization: admin" http://192.168.56.104:8080/secret
+{"message": "Internal Server Error"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -H "X-User: patrick" http://192.168.56.104:8080/secret
+{"message": "Internal Server Error"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -X http://192.168.56.104:8080/login -H "Contennt-Type: application/json" -d '{"username":"patrick","password":"test"}'
+curl: (2) no URL specified
+curl: try 'curl --help' or 'curl --manual' for more information
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -X http://192.168.56.104:8080/login -H "Content-Type: application/json" -d '{"username":"patrick","password":"test"}' 
+curl: (2) no URL specified
+curl: try 'curl --help' or 'curl --manual' for more information
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ gobuster dir -u http://192.168.56.104:8080 -w /usr/share/wordlists/dirb/common.txt
+===============================================================
+Gobuster v3.8
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://192.168.56.104:8080
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/01                   (Status: 200) [Size: 2193]
+/02                   (Status: 200) [Size: 2356]
+/04                   (Status: 200) [Size: 2324]
+/1                    (Status: 200) [Size: 2193]
+/2                    (Status: 200) [Size: 2356]
+/4                    (Status: 200) [Size: 2324]
+/create               (Status: 200) [Size: 2596]
+/login                (Status: 405) [Size: 64]
+/registration         (Status: 200) [Size: 29]
+/run                  (Status: 405) [Size: 178]
+/secret               (Status: 500) [Size: 37]
+/test                 (Status: 200) [Size: 17]
+/users                (Status: 200) [Size: 140]
+Progress: 4613 / 4613 (100.00%)
+===============================================================
+Finished
+===============================================================
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X http://192.168.56.104:8080/registration -H "Content-Type: application/json" -d '{"username":"rene","password":"123"}' 
+curl: (2) no URL specified
+curl: try 'curl --help' or 'curl --manual' for more information
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X POST http://192.168.56.104:8080/registration -H "Content-Type: application/json" -d '{"username":"rene","password":"123"}'
+HTTP/1.1 200 OK
+Server: nginx/1.14.2
+Date: Sun, 22 Feb 2026 04:11:06 GMT
+Content-Type: application/json
+Content-Length: 362
+Connection: keep-alive
+
+{"message": "User rene was created. Please use the login API to log in!", "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3MTczMzQ2NiwianRpIjoiYTU4MDNkM2ItMTBkMy00YTlkLWE0NDEtMTgyZWZkMGUwOGE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InJlbmUiLCJuYmYiOjE3NzE3MzM0NjYsImV4cCI6MTc3MTczNDM2Nn0.iUBOJRL_ZfuwS7uKi_QYxliFaBPfKrJ5af_V-YXNAjw"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3MTczMzQ2NiwianRpIjoiYTU4MDNkM2ItMTBkMy00YTlkLWE0NDEtMTgyZWZkMGUwOGE1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InJlbmUiLCJuYmYiOjE3NzE3MzM0NjYsImV4cCI6MTc3MTczNDM2Nn0.iUBOJRL_ZfuwS7uKi_QYxliFaBPfKrJ5af_V-YXNAjw" http://192.168.56.104:8080/secret 
+{"message": "Internal Server Error"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -X POST http://192.168.56.104:8080/login -H "Content-Type: application/json" -d '{"username":"rene","password":"123"}
+quote> 
+quote> '
+{"message": "Logged in as rene", "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3MTczNDA2OCwianRpIjoiOWU0NTU5MjQtMGQzMy00MGJlLTllMGMtMDA1YjBkMTE2MTAzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InJlbmUiLCJuYmYiOjE3NzE3MzQwNjgsImV4cCI6MTc3MTczNDk2OH0.qa3SPAvhAwl4XsdthVXm57ojWs_2ALN-pJ1fOgsA6fo", "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3MTczNDA2OCwianRpIjoiNjUxMGM3MDEtMGEwNS00Mjk5LWEwNDUtMDNmZmMxZWZhM2ZmIiwidHlwZSI6InJlZnJlc2giLCJzdWIiOiJyZW5lIiwibmJmIjoxNzcxNzM0MDY4LCJleHAiOjE3NzE3Mzc2Njh9.YrAgj1w9S8Ws9BJUUz7rLb7-IkOsnLnGumGog6aTJNc"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3MTczNDA2OCwianRpIjoiOWU0NTU5MjQtMGQzMy00MGJlLTllMGMtMDA1YjBkMTE2MTAzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InJlbmUiLCJuYmYiOjE3NzE3MzQwNjgsImV4cCI6MTc3MTczNDk2OH0.qa3SPAvhAwl4XsdthVXm57ojWs_2ALN-pJ1fOgsA6fo" http://192.168.56.104:8080/secret
+
+{"message": "Internal Server Error"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ 
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -X POST http://192.168.56.104:8080/login -H "Authorizacion: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3MTczNDA2OCwianRpIjoiOWU0NTU5MjQtMGQzMy00MGJlLTllMGMtMDA1YjBkMTE2MTAzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InJlbmUiLCJuYmYiOjE3NzE3MzQwNjgsImV4cCI6MTc3MTczNDk2OH0.qa3SPAvhAwl4XsdthVXm57ojWs_2ALN-pJ1fOgsA6fo" -H "Content-Type: application/json" -d '{}'
+{"message": {"username": "Username field cannot be blank."}}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ TOKEN="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3MTczNDA2OCwianRpIjoiOWU0NTU5MjQtMGQzMy00MGJlLTllMGMtMDA1YjBkMTE2MTAzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InJlbmUiLCJuYmYiOjE3NzE3MzQwNjgsImV4cCI6MTc3MTczNDk2OH0.qa3SPAvhAwl4XsdthVXm57ojWs_2ALN-pJ1fOgsA6fo"
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X http://192.168.56.104:8080/registration -H "Authorization: Bearer $TOKEN"
+curl: (2) no URL specified
+curl: try 'curl --help' or 'curl --manual' for more information
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X http://192.168.56.104:8080/secret -H "Authorization: Bearer $TOKEN"
+curl: (2) no URL specified
+curl: try 'curl --help' or 'curl --manual' for more information
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X GET http://192.168.56.104:8080/secret -H "Authorization: Bearer $TOKEN"
+HTTP/1.1 500 INTERNAL SERVER ERROR
+Server: nginx/1.14.2
+Date: Sun, 22 Feb 2026 04:30:34 GMT
+Content-Type: application/json
+Content-Length: 37
+Connection: keep-alive
+
+{"message": "Internal Server Error"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X http://192.168.56.104:8080/secret -H "Authorization: Bearer $TOKEN"    
+curl: (2) no URL specified
+curl: try 'curl --help' or 'curl --manual' for more information
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X GET http://192.168.56.104:8080/secret -H "Authorization: Bearer $TOKEN"
+HTTP/1.1 500 INTERNAL SERVER ERROR
+Server: nginx/1.14.2
+Date: Sun, 22 Feb 2026 04:31:13 GMT
+Content-Type: application/json
+Content-Length: 37
+Connection: keep-alive
+
+{"message": "Internal Server Error"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X GET http://192.168.56.104:8080/secret --cookie "acces_token_cookie= $TOKEN"
+HTTP/1.1 500 INTERNAL SERVER ERROR
+Server: nginx/1.14.2
+Date: Sun, 22 Feb 2026 04:31:58 GMT
+Content-Type: application/json
+Content-Length: 37
+Connection: keep-alive
+
+{"message": "Internal Server Error"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X GET http://192.168.56.104:8080/secret --cookie "access_token_cookie= $TOKEN"
+HTTP/1.1 200 OK
+Server: nginx/1.14.2
+Date: Sun, 22 Feb 2026 04:34:12 GMT
+Content-Type: application/json
+Content-Length: 61
+Connection: keep-alive
+Set-Cookie: access_token_cookie=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3MTczNDg1MiwianRpIjoiZWRlOWI0MTMtYWM4YS00NzBhLWEwOTAtZGQyNjhiYzdhMTFhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InJlbmUiLCJuYmYiOjE3NzE3MzQ4NTIsImV4cCI6MTc3MTczNTc1Mn0.yK464MfPIzyLpm_iz0ZGDUYstfGAbh3FwO9woHKSrB4; Secure; HttpOnly; Path=/
+
+{"ip-address": "", "secret_key": "commandexecutionissecret"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ SEC="commandexecutionissecret"
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X GET http://192.168.56.104:8080/secret -H "Cookie: access_token_cookie=$SEC"
+HTTP/1.1 500 INTERNAL SERVER ERROR
+Server: nginx/1.14.2
+Date: Sun, 22 Feb 2026 04:38:56 GMT
+Content-Type: application/json
+Content-Length: 37
+Connection: keep-alive
+
+{"message": "Internal Server Error"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -i -X GET http://192.168.56.104:8080/secret -H "Cookie: access_token_cookie=$TOKEN"
+HTTP/1.1 500 INTERNAL SERVER ERROR
+Server: nginx/1.14.2
+Date: Sun, 22 Feb 2026 04:41:18 GMT
+Content-Type: application/json
+Content-Length: 37
+Connection: keep-alive
+
+{"message": "Internal Server Error"}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -X POST http://192.168.56.104:8080/run -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"username":"rene","secret_key":"commandexecutionissecret"}'
+{"message":"Please provide URL to request in the form url:port. Example: 127.0.0.1:12345","success":false}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -X POST http://192.168.56.104:8080/run -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"username":"rene","secret_key":"commandexecutionissecret","url":"127.0.0.1:80"}'
+{"message":"  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100   411  100   411    0     0   100k      0 --:--:-- --:--:-- --:--:--  133k\n","success":false}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -s -X POST http://192.168.56.104:8080/run -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"username":"rene","secret_key":"commandexecutionissecret","url":"127.0.0.1:80"}'
+{"message":"  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100   411  100   411    0     0   100k      0 --:--:-- --:--:-- --:--:--  133k\n","success":false}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -s -X POST http://192.168.56.104:8080/run -H "Content-Type: application/json" -d '{"url":"127.0.0.1:80"}' 
+{"message":"We need your secret key!","success":false}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -s -X POST http://192.168.56.104:8080/run -H "Content-Type: application/json" -d '{"username":"rene","secret_key":"commandexecutionissecret","url":"127.0.0.1:80"}'
+
+{"message":"  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100   411  100   411    0     0   133k      0 --:--:-- --:--:-- --:--:--  133k\n","success":false}
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl http://192.168.56.104      
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to SNAKEOIL!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to SNAKEOIL!</h1>
+<p>Congratulations! SNAKEOIL is set up properly!</p>
+
+<p>If you are lost with life, <a href="https://www.google.com">Google</a> can help.<br/></p>
+
+</body>
+</html>
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl http://192.168.56.104:8080
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title> Welcome to Good Tech Inc.'s Snake Oil Project </title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="/">Good Tech Inc</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/create">New Post</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        
+        
+    <h1> Welcome to Good Tech Inc.'s Snake Oil Project </h1>
+    
+        <a href="/1">
+            <h2>Introduction</h2>
+        </a>
+            <span class="badge badge-primary">2021-06-19 10:02:53</span>
+        <a href="/1/edit">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <hr>
+    
+        <a href="/2">
+            <h2>House Rules</h2>
+        </a>
+            <span class="badge badge-primary">2021-06-19 10:02:53</span>
+        <a href="/2/edit">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <hr>
+    
+        <a href="/4">
+            <h2>Useful Links</h2>
+        </a>
+            <span class="badge badge-primary">2021-08-18 00:29:46</span>
+        <a href="/4/edit">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <hr>
+    
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>                                                                              
+┌──(rene㉿kali)-[~]
+└─$ curl -s  http://192.168.56.104 -o index80.html
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ less index80.html
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ grep -i pass index80.html
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ grep -i patrick index80.html
+                                                                              
+┌──(rene㉿kali)-[~]
+└─$ grep -i admin index80.html
