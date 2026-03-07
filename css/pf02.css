@@ -39,3 +39,7 @@
 .estado.pendiente {
   color: #ef4444;
 }
+
+.estado.proceso {
+  color: #ffd500;
+}
