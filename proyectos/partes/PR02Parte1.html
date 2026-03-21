@@ -246,6 +246,154 @@ Tambien es importante que estas simulaciones se usen de forma etica.
 
 <hr>
 
+<h2>Phishing Quiz</h2>
+
+<p>
+Este cuestionario simula escenarios de phishing con fines educativos.
+No se recopilan datos personales ni credenciales reales.
+</p>
+
+<p>
+<strong>Consentimiento informado:</strong> Este es un ejercicio educativo. 
+Puedes abandonar en cualquier momento.
+</p>
+
+<label>Ingresa tu alias de hacker:</label><br>
+<input type="text" id="alias" placeholder="Ej: DarkByte"><br><br>
+
+<button onclick="darConsentimiento()">Acepto participar</button>
+
+<hr>
+
+<div id="quiz" style="display:none;"></div>
+
+<p id="resultado"></p>
+
+<script>
+let consentimiento = false;
+let aliasUsuario = "";
+let respondida = false;
+
+function darConsentimiento(){
+aliasUsuario = document.getElementById("alias").value;
+
+if(aliasUsuario.trim() === ""){
+alert("Ingresa un alias antes de comenzar");
+return;
+}
+
+consentimiento = true;
+document.getElementById("quiz").style.display = "block";
+mostrarPregunta();
+}
+
+const preguntas = [
+{
+texto: "Recibes un correo supuestamente de tu banco indicando que detectaron actividad sospechosa en tu cuenta y debes hacer clic en un enlace para verificar tu identidad inmediatamente.",
+correcta: "Phishing",
+feedback: "Los bancos no piden verificar datos por enlaces urgentes. Siempre revisa el remitente."
+},
+{
+texto: "Te llega un correo institucional de tu escuela con el dominio correcto informando sobre cambios en el calendario escolar y sin enlaces sospechosos.",
+correcta: "Legitimo",
+feedback: "El dominio correcto y el contexto tienen sentido, probablemente es real."
+},
+{
+texto: "Recibes un mensaje con muchos errores ortograficos que dice que ganaste un premio y debes ingresar a un enlace para reclamarlo.",
+correcta: "Phishing",
+feedback: "Errores y premios falsos son señales claras de phishing."
+},
+{
+texto: "Te llega un correo de una paqueteria informando sobre un envio que si esperas, con numero de rastreo valido.",
+correcta: "Legitimo",
+feedback: "Coincide con una accion real, pero aun asi revisa el remitente."
+},
+{
+texto: "Un correo te promete dinero gratis o recompensas si haces clic en un enlace para reclamarlo.",
+correcta: "Phishing",
+feedback: "Ofertas demasiado buenas suelen ser falsas."
+},
+{
+texto: "Recibes un correo de soporte tecnico pidiendote tu contrasena para solucionar un problema urgente.",
+correcta: "Phishing",
+feedback: "Nunca compartas contrasenas por correo."
+},
+{
+texto: "Te envian un correo con un enlace acortado sin explicar claramente su proposito.",
+correcta: "Phishing",
+feedback: "Los enlaces acortados pueden ocultar sitios maliciosos."
+},
+{
+texto: "Recibes una notificacion de cambio de contrasena que tu mismo realizaste hace unos minutos.",
+correcta: "Legitimo",
+feedback: "Coincide con tu actividad reciente."
+},
+{
+texto: "Un correo urgente de tu jefe te pide hacer una transferencia rapida sin seguir el proceso habitual.",
+correcta: "Phishing",
+feedback: "Puede ser suplantacion, verifica por otro medio."
+},
+{
+texto: "Recibes un correo con diseno profesional pero el enlace dirige a una pagina con URL sospechosa.",
+correcta: "Phishing",
+feedback: "El diseno puede enganarte, revisa siempre la URL."
+}
+];
+
+let indice = 0;
+let score = 0;
+
+function mostrarPregunta() {
+respondida = false;
+let q = preguntas[indice];
+
+document.getElementById("quiz").innerHTML = `
+<p><strong>Pregunta ${indice+1}:</strong> ${q.texto}</p>
+
+<div id="opciones">
+<button onclick="responder('Phishing')">Phishing</button>
+<button onclick="responder('Legitimo')">Legitimo</button>
+</div>
+
+<p id="feedback"></p>
+<div id="nextBtn"></div>
+`;
+}
+
+function responder(resp) {
+if(respondida) return;
+
+respondida = true;
+let q = preguntas[indice];
+let feedback = document.getElementById("feedback");
+
+document.getElementById("opciones").innerHTML = "";
+
+if(resp === q.correcta){
+score++;
+feedback.innerHTML = "Correcto. " + q.feedback;
+} else {
+feedback.innerHTML = "Incorrecto. " + q.feedback;
+}
+
+document.getElementById("nextBtn").innerHTML = `
+<button onclick="siguiente()">Siguiente</button>
+`;
+}
+
+function siguiente(){
+indice++;
+
+if(indice < preguntas.length){
+mostrarPregunta();
+} else {
+document.getElementById("quiz").innerHTML = "Quiz terminado";
+document.getElementById("resultado").innerHTML = 
+"Alias: " + aliasUsuario + "<br>Puntaje: " + score + "/10 <br>Buen trabajo, sigue practicando.";
+}
+}
+</script>
+        
 <hr>
 
 <h2>Fuentes</h2>
