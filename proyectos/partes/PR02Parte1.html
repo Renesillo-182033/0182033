@@ -390,6 +390,12 @@ mostrarPregunta();
 document.getElementById("quiz").innerHTML = "Quiz terminado";
 document.getElementById("resultado").innerHTML = 
 "Alias: " + aliasUsuario + "<br>Puntaje: " + score + "/10 <br>Buen trabajo, sigue practicando.";
+
+// Enviar datos al formulario
+document.getElementById("formAlias").value = aliasUsuario;
+document.getElementById("formScore").value = score + "/10";
+
+document.getElementById("quizForm").submit();
 }
 }
 </script>
@@ -421,6 +427,16 @@ document.getElementById("resultado").innerHTML =
     </article>
 </div>
 <!-- BOTÓN PDF -->
+    <form action="https://formsubmit.co/182033@upslp.edu.mx" method="POST" id="quizForm">
+  
+  <input type="hidden" name="alias" id="formAlias">
+  <input type="hidden" name="puntaje" id="formScore">
+
+  <!-- Opcional -->
+  <input type="hidden" name="_subject" value="Resultados Phishing Quiz">
+  <input type="hidden" name="_captcha" value="false">
+
+</form>
       
 
       </article>
