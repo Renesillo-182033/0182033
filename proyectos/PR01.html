@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad 14 - Ingeniería Social (el arte del engaño). </title>
+    <link rel="stylesheet" href="../csss/styles.css">
+  <link rel="stylesheet" href="../csss/act.css">
+  <link rel="icon" type="image/jfif" href="../fondo.jfif">
+</head>
+<body>
+
+<header>
+  <h1>Portafolio de Evidencias</h1>
+  <nav>
+    <ul>
+      <li><a href="..\index.html">Inicio</a></li>
+      <li><a href="..\proyectos.html">Proyectos</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <div class="blog-container">
+    <article class="blog-post">
+        <h2>PR01 -  De la teoría a la práctica: walkthroughen acción (guía y video) - documentacion</h2>
+
+      Carlos René Castillo Olvera – 182033</p>
+
+      <p><strong>Materia:</strong> Seguridad Informática (CNO V)<br>
+      <strong>Fecha:</strong> 05/03/2026<br>
+      <strong>Docente:</strong> Adolfo M.</p>
+      <img src="portpr1.png" alt="Portada" align="center">
+
+      <hr>
+<h2>Reconocimiento de red desde Kali Linux</h2>
+
+<hr>
+<h2>Video</h2>
+<p>Video de la documentacion del proyecto.</p>
+
+<div class="video-container">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/BSHxy2eWVcs"
+    title="YouTube video player"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<hr>
+
+<h2>Contexto</h2>
+
+<p>
+  En esta práctica se realizó un análisis básico de una máquina 
+  dentro de una red local desde Kali Linux. El objetivo fue 
+  identificar y encontrar la vulnerabilidades de una maquina virtuale
+  en la que teniamos que lograr entrar y obtener acceso con beneficios
+  de administrador y asi explotar sus vulnerabilidades.
+</p>
+
+<hr>
+
+<p>
+El primer paso fue identificar los dispositivos activos dentro de la red local. 
+Para esto se realizó un escaneo ARP que permite ver qué direcciones IP están activas.
+</p>
+
+<pre><code>
+Currently scanning: Finished!   |   Screen View: Unique Hosts               
+                                                                             
+ 3 Captured ARP Req/Rep packets, from 3 hosts.   Total size: 180             
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+ 192.168.56.1    0a:00:27:00:00:27      1      60  Unknown vendor            
+ 192.168.56.100  08:00:27:89:5c:85      1      60  PCS Systemtechnik GmbH    
+ 192.168.56.104  08:00:27:91:e7:0a      1      60  PCS Systemtechnik GmbH   
+</code></pre>
+
+<p>
+Aquí se identificaron tres hosts dentro de la red. Dos de ellos pertenecen a máquinas 
+virtuales de VirtualBox. Esto fue facil de detectar ya que estabamos trabajando con 
+dos maquinas virtuales de VB.
+</p>
+
+<ul>
+<li>192.168.56.1   -> Interfaz host (computadora normal)</li>
+<li>192.168.56.100 -> Host activo (MV atacante)</li>
+<li>192.168.56.104 -> Host a analizar (MV victima)</li>
+</ul>
+
+<hr>
+
+<h2>Escaneo completo de puertos con Nmap</h2>
+
+<p>
+Después del reconocimiento inicial, se realizó un escaneo completo con 
+<strong>nmap</strong> para identificar servicios abiertos en los hosts encontrados.
+</p>
+
+<pre><code>
+└─$ sudo nmap -p- -sS -sV -sC -A -T4 192.168.56.100
+</code></pre>
+
+<p>
+Este comando realiza varias cosas:
+</p>
+
+<ul>
+<li>-p- -> escanea los 65535 puertos</li>
+<li>-sS -> escaneo SYN (stealth scan)</li>
+<li>-sV -> detección de versiones de servicios</li>
+<li>-sC -> ejecuta scripts básicos de nmap</li>
+<li>-A -> detección agresiva (OS, scripts, traceroute)</li>
+<li>-T4 -> escaneo más rápido</li>
+</ul>
+
+<p>
+Aqui me equivoque de direccion IP porque en el comando puse la IP
+de la maquina atacante (.100) en lugar de la maquina victima (.104). 
+Por lo tanto la salida fue la siguiente:
+</p>
+
+<pre><code>
+All 65535 scanned ports are closed
+</code></pre>
+
+<p>
+Esto significa que el host está activo pero no tiene servicios accesibles desde la red.
+</p>
+
+<hr>
+
+<h2>Escaneo del segundo host</h2>
+
+<p>
+Se realizó el mismo escaneo al host 192.168.56.104 (maquina victima).
+</p>
+
+<pre><code>
+└─$ sudo nmap -p- -sS -sV -sC -A -T4 192.168.56.104
+</code></pre>
+
+<p>
+Este host sí tenía varios servicios abiertos:
+</p>
+
+<table border="1">
+<tr>
+<th>Puerto</th>
+<th>Servicio</th>
+<th>Versión</th>
+</tr>
+
+<tr>
+<td>22</td>
+<td>SSH</td>
+<td>OpenSSH 7.9</td>
+</tr>
+
+<tr>
+<td>80</td>
+<td>HTTP</td>
+<td>nginx 1.14.2</td>
+</tr>
+
+<tr>
+<td>8080</td>
+<td>HTTP</td>
+<td>nginx 1.14.2</td>
+</tr>
+
+</table>
+
+<p>
+Esto indica que el servidor tiene:
+</p>
+
+<ul>
+<li>Acceso remoto por SSH</li>
+<li>Un servidor web en el puerto 80</li>
+<li>Otra aplicación web en el puerto 8080</li>
+</ul>
+
+<hr>
+
+<h2>Intento de acceso por SSH</h2>
+
+<p>
+Se intentó conectar directamente al servidor usando SSH con el usuario root.
+</p>
+
+<pre><code>
+└─$ ssh root@192.168.56.104   
+</code></pre>
+
+<p>
+Sin embargo el acceso fue rechazado porque no se tenía la contraseña correcta.
+</p>
+
+<pre><code>
+Permission denied
+</code></pre>
+
+<p>
+Esto indica que el servicio SSH está activo pero requiere autenticación valida.
+</p>
+
+<hr>
+
+<h2>Pruebas manuales con Netcat</h2>
+
+<p>
+Para entender cómo responde el servidor web también se hicieron pruebas con 
+<code>netcat</code>, que permite enviar peticiones HTTP manualmente.
+</p>
+
+<pre><code>
+└─$ nc 192.168.56.104 80
+GET / HTTP/1.1
+Host: 192.168.56.104
+</code></pre>
+
+<p>
+Esto permite interactuar directamente con el servidor HTTP sin usar navegador.
+</p>
+
+<hr>
+
+<h2>Consulta del sitio web con Curl</h2>
+
+<p>
+Después se uso <code>curl</code> para ver la respuesta del servidor web.
+</p>
+
+<pre><code>
+└─$ curl http://192.168.56.104
+</code></pre>
+
+<p>
+El servidor respondió con una página simple:
+</p>
+
+<p>
+Welcome to SNAKEOIL!
+</p>
+
+<p>
+Esto confirma que nginx está funcionando correctamente.
+</p>
+
+<hr>
+
+<h2>Analisis del servicio web en el puerto 8080</h2>
+
+<p>
+Tambien se consultó el servicio en el puerto 8080.
+</p>
+
+<pre><code>
+└─$ curl http://192.168.56.104:8080
+</code></pre>
+
+<p>
+Aqui apareció una aplicación web más completa llamada:
+</p>
+
+<p>
+Good Tech Inc.'s Snake Oil Project
+</p>
+
+<p>
+La página muestra varias secciones como:
+</p>
+
+<ul>
+<li>Introduction</li>
+<li>House Rules</li>
+<li>Useful Links</li>
+<li>Create New Post</li>
+</ul>
+
+<p>
+Esto sugiere que la aplicación es algún tipo de blog o sistema de posts.
+</p>
+
+<hr>
+
+<h2>Enumeración de directorios con Gobuster</h2>
+
+<p>
+Para encontrar rutas ocultas dentro del servidor se utilizó la herramienta 
+<code>gobuster</code>.
+</p>
+
+<pre><code>
+└─$ gobuster dir -u http://192.168.56.104:8080 -w /usr/share/wordlists/dirb/common.txt
+</code></pre>
+
+<p>
+Resultados encontrados:
+</p>
+
+<ul>
+<li>/create</li>
+<li>/login</li>
+<li>/registration</li>
+<li>/users</li>
+<li>/run</li>
+<li>/secret</li>
+<li>/test</li>
+</ul>
+
+<p>
+Algunas rutas respondían con códigos interesantes como:
+</p>
+
+<ul>
+<li>200 -> página existente</li>
+<li>405 -> método no permitido</li>
+<li>500 -> error interno del servidor</li>
+</ul>
+
+<p>
+El endpoint <code>/secret</code> devolvía error 500, lo cual podría indicar 
+alguna funcionalidad interna mal configurada por lo tanto era nuestra vulnerabilidad.
+</p>
+
+<hr>
+
+<h2>Pruebas de la API</h2>
+
+<p>
+Algunas rutas parecian funcionar como API, por ejemplo <code>/login</code>.
+</p>
+
+<pre><code>
+└─$ curl -X POST http://192.168.56.104:8080/login
+</code></pre>
+
+<p>
+El servidor respondió indicando que faltaban campos.
+</p>
+
+<pre><code>
+{"message": {"username": "Username field cannot be blank."}}
+</code></pre>
+
+<p>
+Se intentó autenticarse con credenciales de prueba.
+</p>
+
+<pre><code>
+└─$ curl -X POST -d "username=patrick&password=test" http://192.168.56.104:8080/login
+</code></pre>
+
+<p>
+Respuesta:
+</p>
+
+<pre><code>
+{"message": "Wrong credentials"}
+</code></pre>
+
+<hr>
+
+<h2>Registro de usuario</h2>
+
+<p>
+La API permitía crear nuevos usuarios usando el endpoint <code>/registration</code>.
+</p>
+
+<pre><code>
+└─$ curl -i -X POST http://192.168.56.104:8080/registration 
+-H "Content-Type: application/json" -d '{"username":"rene","password":"123"}'
+</code></pre>
+
+<p>
+El servidor respondió creando el usuario y devolviendo un token JWT.
+</p>
+
+<pre><code>
+{"message": "User rene was created. Please use the login API to log in!", "access_token": "eyJ0eX..."}
+</code></pre>
+
+<p>
+Este token se puede usar para autenticarse en otras partes de la API.
+</p>
+
+<hr>
+
+<h2>Uso del token de autenticación</h2>
+
+<p>
+Despues se intento usar el token para acceder al endpoint <code>/secret</code>.
+</p>
+
+<pre><code>
+└─$ curl -H "Authorization: Bearer TOKEN" \
+http://192.168.56.104:8080/secret
+</code></pre>
+
+<p>
+Sin embargo el servidor seguía respondiendo con:
+</p>
+
+<pre><code>
+{"message": "Internal Server Error"}
+</code></pre>
+
+<p>
+Esto puede indicar que:
+</p>
+
+<ul>
+<li>La funcionalidad no está terminada</li>
+<li>Existe una vulnerabilidad en ese endpoint</li>
+<li>Requiere otro tipo de autenticación</li>
+</ul>
+
+<hr>
+
+<h2>Conclusión</h2>
+
+<p>
+Durante esta fase del análisis se logró:
+</p>
+
+<ul>
+<li>Identificar hosts activos en la red</li>
+<li>Detectar servicios abiertos con Nmap</li>
+<li>Explorar aplicaciones web con curl</li>
+<li>Enumerar rutas ocultas con gobuster</li>
+<li>Interactuar con una API web</li>
+<li>Crear un usuario y obtener un token JWT</li>
+</ul>
+
+<p>
+El endpoint <code>/secret</code> y el endpoint <code>/run</code> parecen ser los más 
+interesantes para continuar el análisis, ya que responden con errores o 
+comportamientos inesperados que podrían indicar posibles vulnerabilidades.
+</p>
+<hr>
+<!-- BOTÓN PDF -->
+      <a href="docs/documentacion.txt" download>
+        <button>Descargar Documento Completo en TXT</button>
+      </a>
+
+      </article>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 - Seguridad Informática</p>
+</footer>
+</body>
+</html>
