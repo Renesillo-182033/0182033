@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad 11 - Red team report 2.0</title>
+    <link rel="stylesheet" href="../csss/styles.css">
+  <link rel="stylesheet" href="../csss/act.css">
+  <link rel="icon" type="image/jfif" href="../fondo.jfif">
+</head>
+<body>
+
+<header>
+  <h1>Portafolio de Evidencias</h1>
+  <nav>
+    <ul>
+      <li><a href="..\index.html">Inicio</a></li>
+      <li><a href="..\PF03.html">Parcial 2</a></li>
+    </ul>
+  </nav>
+</header>
+    
+<main>
+  <div class="blog-container">
+    <article class="blog-post">
+        <h2>ACTIVIDAD 11 - Red team report 2.0</h2>
+
+      Carlos René Castillo Olvera – 182033</p>
+
+      <p><strong>Materia:</strong> Seguridad Informática (CNO V)<br>
+      <strong>Fecha:</strong> 22/3/2026<br>
+      <strong>Docente:</strong> Lopez Servando</p>
+        <img src="port11.png" alt="Portada" align="center">
+
+      <hr>
+<h1>1. Executive Summary</h1>
+
+<p>
+Se realizó una evaluación de seguridad ofensiva (Penetration Test) sobre la máquina vulnerable My File Server: 1, disponible en la plataforma Armour Infosec, con dirección IP 192.168.0.8. La evaluación se llevó a cabo bajo una metodología estructurada, siguiendo las fases de reconocimiento, enumeración, explotación y post-explotación, con el objetivo de identificar, documentar y demostrar el nivel de exposición real del sistema.
+</p>
+
+<p>
+Durante la evaluación se identificaron siete (7) vulnerabilidades de impacto significativo. Entre los hallazgos más críticos se encontró la exposición de credenciales en texto plano dentro de un archivo accesible públicamente (readme.txt), lo que permitió el acceso autenticado al servicio FTP (puerto 21, vsftpd 3.0.2) y posteriormente la inyección de una llave pública SSH en el directorio home del usuario smbuser. Dicho acceso derivó en la obtención de una sesión SSH interactiva sobre el servidor.
+</p>
+
+<p>
+Una vez obtenido acceso al sistema como usuario no privilegiado, se detectó que el kernel en ejecución correspondía a la versión 3.10.0-229.el7.x86_64, afectada por la vulnerabilidad Dirty COW (CVE-2016-5195). La explotación de dicha vulnerabilidad permitió la escalada de privilegios al usuario root, logrando el compromiso total del sistema objetivo.
+</p>
+
+<p>
+El nivel de riesgo general del sistema se clasifica como CRÍTICO. Se recomienda atender de manera inmediata las observaciones documentadas en la sección de recomendaciones técnicas.
+</p>
+
+<h1>2. Alcance (Scope)</h1>
+
+<p>
+La evaluación se limitó exclusivamente al activo descrito a continuación, dentro de un entorno de laboratorio controlado:
+</p>
+
+<p>• Nombre del objetivo: My File Server: 1</p>
+<p>• Dirección IP: 192.168.0.8</p>
+<p>• Sistema Operativo: Kali Linux</p>
+<p>• Segmento de red: 192.168.0.0/24</p>
+<p>• Tipo de evaluación: Caja Negra (Black Box) — sin credenciales previas</p>
+<p>• Ambiente: Entorno simulado / red interna de laboratorio</p>
+<p>• Periodo: 08–09 de marzo de 2026</p>
+
+<h1>3. Metodología Aplicada</h1>
+
+<p>
+La evaluación se llevó a cabo conforme al estándar PTES (Penetration Testing Execution Standard), una de las metodologías de referencia más reconocidas en la industria para la ejecución de pruebas de penetración. Dicho estándar comprende las siguientes fases:
+</p>
+
+<h2>1. Reconocimiento (Reconnaissance)</h2>
+
+<p>
+Recopilación de información pasiva y activa sobre el objetivo, incluyendo escaneo de red, identificación de hosts activos y descubrimiento de servicios.
+</p>
+
+<h2>2. Enumeración (Enumeration)</h2>
+
+<p>
+Identificación detallada de versiones de servicios, configuraciones expuestas, recursos compartidos, directorios web y posibles vectores de ataque.
+</p>
+
+<h2>3. Explotación (Exploitation)</h2>
+
+<p>
+Aprovechamiento de las vulnerabilidades identificadas para obtener acceso no autorizado al sistema objetivo.
+</p>
+
+<h2>4. Post-Explotación (Post-Exploitation)</h2>
+
+<p>
+Actividades realizadas tras obtener acceso inicial, incluyendo escalada de privilegios, mantenimiento de acceso e identificación de datos sensibles.
+</p>
+
+<h2>5. Elaboración de informe</h2>
+
+<p>
+Documentación técnica y ejecutiva de todos los hallazgos, evidencias, análisis de impacto y recomendaciones de remediación.
+</p>
+
+<p>
+Las herramientas utilizadas durante la evaluación incluyen: netdiscover, Nmap, smbmap, Nikto, Metasploit Framework (módulos auxiliares), cliente FTP estándar, ssh-keygen, wget, gcc y el exploit público CVE-2016-5195 (Dirty COW / 40616.c).
+</p>
+<hr>
+<!-- BOTÓN PDF -->
+      <a href="../docs/182033-ACT011.pdf" download>
+        <button>Descargar Mi Actividad en PDF</button>
+      </a>
+      
+
+      </article>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 - Seguridad Informática</p>
+</footer>
+</body>
+</html>
