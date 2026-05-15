@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad 15 - Set. </title>
+    <link rel="stylesheet" href="../csss/styles.css">
+  <link rel="stylesheet" href="../csss/act.css">
+  <link rel="icon" type="image/jfif" href="../fondo.jfif">
+</head>
+<body>
+
+<header>
+  <h1>Portafolio de Evidencias</h1>
+  <nav>
+    <ul>
+      <li><a href="..\index.html">Inicio</a></li>
+      <li><a href="..\PF04.html">Parcial 3</a></li>
+    </ul>
+  </nav>
+</header>
+    
+<main>
+  <div class="blog-container">
+    <article class="blog-post">
+        <h2>ACTIVIDAD 15 - Set. </h2>
+
+      Carlos René Castillo Olvera – 182033</p>
+
+      <p><strong>Materia:</strong> Seguridad Informática (CNO V)<br>
+      <strong>Fecha:</strong> 07/5/2026<br>
+      <strong>Docente:</strong> Lopez Servando</p>
+        <img src="port15.PNG" alt="Portada" align="center">
+
+      <hr>
+
+<hr>
+
+<h1>Objetivo</h1>
+
+<p>
+El objetivo de esta práctica fue simular el funcionamiento técnico de un atacante en el envío de correos mediante herramientas de ingeniería social, específicamente utilizando el Social-Engineer Toolkit (SET) sobre Kali Linux.
+</p>
+
+<hr>
+
+<h1>Social-Engineer Toolkit (SET)</h1>
+
+<p>
+El Social-Engineer Toolkit (SET) fue creado y escrito por Dave Kennedy, fundador de TrustedSec.
+</p>
+
+<p>
+Se trata de una herramienta de código abierto, basada en Python, destinada a realizar pruebas de penetración mediante técnicas de ingeniería social.
+</p>
+
+<p>
+SET ha sido presentado en conferencias de gran relevancia como Black Hat, DerbyCon, Defcon y ShmooCon.
+</p>
+
+<p>
+Con más de dos millones de descargas, es considerado uno de los estándares más utilizados para pruebas de penetración orientadas a ingeniería social y cuenta con un amplio respaldo dentro de la comunidad de seguridad informática.
+</p>
+
+<hr>
+
+<h1>Arquitectura de la Solución</h1>
+
+<h2>Postfix (Kali Linux — Equipo 5)</h2>
+
+<p>
+Servidor encargado de generar y enviar los correos electrónicos desde el entorno Kali Linux.
+</p>
+
+<hr>
+
+<h2>Gmail (Relay SMTP autenticado)</h2>
+
+<p>
+Servicio utilizado como relay SMTP autenticado para permitir el envío correcto de correos electrónicos hacia proveedores externos.
+</p>
+
+<hr>
+
+<h2>Destino (Correo Outlook)</h2>
+
+<p>
+Cuenta de correo receptora utilizada para validar la entrega de los mensajes enviados durante la práctica.
+</p>
+
+<hr>
+
+<h1>Funcionamiento de la Cadena de Envío</h1>
+
+<p>
+Se diseñó una cadena de envío de tres etapas para superar las restricciones de entrega directa impuestas por los proveedores de correo modernos.
+</p>
+
+<p>
+El flujo de comunicación consistió en enviar los mensajes desde Kali Linux utilizando Postfix, posteriormente reenviarlos mediante el relay SMTP de Gmail y finalmente entregarlos al correo destino en Outlook.
+</p>
+
+<hr>
+
+<h1>Importancia del Relay SMTP</h1>
+
+<p>
+El uso de un relay SMTP externo fue necesario debido a que el envío directo desde una dirección IP residencial suele ser bloqueado por los filtros anti-spam implementados por los proveedores de correo electrónico.
+</p>
+
+<p>
+Gmail permitió autenticar y retransmitir los mensajes, aumentando la probabilidad de entrega exitosa y reduciendo el riesgo de ser identificado como spam.
+</p>
+
+<hr>
+<!-- BOTÓN PDF -->
+      <a href="../docs/182033-ACT015.pdf" download>
+        <button>Descargar Mi Actividad en PDF</button>
+      </a>
+      
+
+      </article>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 - Seguridad Informática</p>
+</footer>
+</body>
+</html>

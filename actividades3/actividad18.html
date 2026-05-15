@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad 18 - Modelo diamante. </title>
+    <link rel="stylesheet" href="../csss/styles.css">
+  <link rel="stylesheet" href="../csss/act.css">
+  <link rel="icon" type="image/jfif" href="../fondo.jfif">
+</head>
+<body>
+
+<header>
+  <h1>Portafolio de Evidencias</h1>
+  <nav>
+    <ul>
+      <li><a href="..\index.html">Inicio</a></li>
+      <li><a href="..\PF04.html">Parcial 3</a></li>
+    </ul>
+  </nav>
+</header>
+    
+<main>
+  <div class="blog-container">
+    <article class="blog-post">
+        <h2>ACTIVIDAD 18 - Modelo diamante. </h2>
+
+      Carlos René Castillo Olvera – 182033</p>
+
+      <p><strong>Materia:</strong> Seguridad Informática (CNO V)<br>
+      <strong>Fecha:</strong> 15/5/2026<br>
+      <strong>Docente:</strong> Lopez Servando</p>
+        <img src="port18.PNG" alt="Portada" align="center">
+
+      <hr>
+<hr>
+
+<h1>Parte 01. Comprensión del Modelo</h1>
+
+<p>
+Se completó la tabla conceptual definiendo cada elemento del Modelo Diamante y asignando un ejemplo práctico correspondiente a escenarios reales de ciberseguridad.
+</p>
+
+<hr>
+
+<table border="1">
+
+<tr>
+<h2>Elemento</h2>
+<h2>Descripción</h2>
+<h2>Ejemplo práctico</h2>
+</tr>
+
+<tr>
+<p>Adversario</p>
+<p>
+Se define como el actor de amenaza, individuo o grupo responsable de dirigir y ejecutar la intrusión cibernética para alcanzar un objetivo específico.
+</p>
+<p>
+Se identifica a un grupo APT o a un atacante externo motivado por la exfiltración de información confidencial.
+</p>
+</tr>
+
+<tr>
+<p>Capacidad</p>
+<p>
+Se refiere al conjunto de herramientas, técnicas, tácticas y procedimientos utilizados por el adversario.
+</p>
+<p>
+Se empleó un payload malicioso y técnicas de inyección SQL para extraer registros de bases de datos.
+</p>
+</tr>
+
+<tr>
+<p>Infraestructura</p>
+<p>
+Se describe como la estructura física y lógica utilizada para controlar capacidades y mantener comunicaciones.
+</p>
+<p>
+Se observó un servidor VPS configurado como C2 junto con dominios utilizados para phishing.
+</p>
+</tr>
+
+<tr>
+<p>Víctima</p>
+<p>
+Es el objetivo principal del ataque, pudiendo ser personas, organizaciones o activos de información.
+</p>
+<p>
+El objetivo comprometido fue un servidor interno y credenciales administrativas.
+</p>
+</tr>
+
+</table>
+
+<hr>
+
+<h1>Parte 02. Análisis de Evento (Modelo Diamante)</h1>
+
+<p>
+Se realizó el análisis del incidente detectado en la organización identificando ejecución de malware y comunicaciones hacia infraestructura externa.
+</p>
+
+<hr>
+
+<table border="1">
+
+<tr>
+<h2>Metacaracterística</h2>
+<h2>Descripción del evento</h2>
+</tr>
+
+<tr>
+<p>Marca de tiempo</p>
+<p>
+Se registró durante la detección del comportamiento anómalo y las alertas generadas por los sistemas de monitoreo.
+</p>
+</tr>
+
+<tr>
+<p>Fase</p>
+<p>
+El evento se ubica en las fases de Comando y Control (C2) y Acciones sobre los Objetivos.
+</p>
+</tr>
+
+<tr>
+<p>Resultado</p>
+<p>
+Se confirmó la ejecución exitosa del malware y la comunicación bidireccional con dominios externos.
+</p>
+</tr>
+
+<tr>
+<p>Dirección</p>
+<p>
+Se identificó tráfico saliente desde la red interna hacia direcciones IP externas.
+</p>
+</tr>
+
+<tr>
+<p>Metodología</p>
+<p>
+Se utilizaron técnicas de beaconing y resolución dinámica de dominios.
+</p>
+</tr>
+
+<tr>
+<p>Recursos</p>
+<p>
+Se emplearon herramientas de análisis de red, WHOIS y motores de detección de malware.
+</p>
+</tr>
+
+</table>
+
+<hr>
+
+<h1>Análisis Detallado del Escenario</h1>
+
+<hr>
+
+<h2>1. ¿Quién es el adversario en este escenario?</h2>
+
+<p>
+Se determinó que el adversario es un actor externo con capacidad de administrar dominios y servidores utilizados para campañas de malware.
+</p>
+
+<hr>
+
+<h2>2. ¿Cuál es la capacidad utilizada?</h2>
+
+<p>
+La capacidad principal consistió en malware avanzado capaz de evadir detecciones básicas y mantener conexiones persistentes.
+</p>
+
+<hr>
+
+<h2>3. ¿Qué tipo de infraestructura se emplea?</h2>
+
+<p>
+Se identificó infraestructura híbrida conformada por dominios específicos y direcciones IP externas utilizadas como nodos C2.
+</p>
+
+<hr>
+
+<h2>4. ¿Quién es la víctima primaria?</h2>
+
+<p>
+La víctima primaria fue la organización afectada y los equipos donde se detectó inicialmente el comportamiento anómalo.
+</p>
+
+<hr>
+
+<h2>5. ¿Existe evidencia de movimiento lateral?</h2>
+
+<p>
+Sí. Los registros de red mostraron múltiples hosts internos conectándose a las mismas direcciones IP externas.
+</p>
+
+<hr>
+
+<h1>Parte 03. Relación con la Kill Chain</h1>
+
+<p>
+Se realizó la correlación de eventos con las fases del modelo Cyber Kill Chain.
+</p>
+
+<hr>
+
+<table border="1">
+
+<tr>
+<h2>Evento</h2>
+<h2>Fase Kill Chain</h2>
+</tr>
+
+<tr>
+<p>Detección de malware</p>
+<p>Instalación / Acciones sobre los objetivos</p>
+</tr>
+
+<tr>
+<p>Envío de phishing</p>
+<p>Entrega (Delivery)</p>
+</tr>
+
+<tr>
+<p>Conexión a C2</p>
+<p>Comando y Control (C2)</p>
+</tr>
+
+<tr>
+<p>Ejecución del malware</p>
+<p>Explotación / Instalación</p>
+</tr>
+
+</table>
+
+<hr>
+
+<h1>Justificación Técnica de la Clasificación</h1>
+
+<hr>
+
+<h2>Envío de Phishing</h2>
+
+<p>
+Corresponde a la fase de Entrega debido a que representa el mecanismo utilizado para trasladar el payload malicioso hacia la víctima.
+</p>
+
+<hr>
+
+<h2>Ejecución del Malware</h2>
+
+<p>
+Se clasifica dentro de las fases de Explotación e Instalación ya que el malware logra persistencia dentro del sistema.
+</p>
+
+<hr>
+
+<h2>Conexión a C2</h2>
+
+<p>
+Se relaciona directamente con la fase de Comando y Control permitiendo administración remota y exfiltración de datos.
+</p>
+
+<hr>
+
+<h2>Detección de Malware</h2>
+
+<p>
+Aunque es un evento defensivo, las anomalías detectadas se originaron durante fases avanzadas de la intrusión.
+</p>
+
+<hr>
+
+<h1>Parte 04. Hilos de Actividad</h1>
+
+<p>
+Se utilizó la metodología de Activity Threads del Modelo Diamante para visualizar la secuencia de eventos de la intrusión.
+</p>
+
+<hr>
+
+<h2>Representación Esquemática de los Hilos</h2>
+
+<p>
+AQUÍ VAN LOS HILOS
+</p>
+
+<hr>
+
+<h1>Descripción Detallada del Análisis de Hilos</h1>
+
+<hr>
+
+<h2>Hilo 1 — Víctima 1</h2>
+
+<p>
+El primer hilo se centra en la obtención de acceso inicial mediante Spear Phishing dirigido a un administrador.
+</p>
+
+<p>
+El malware estableció persistencia y abrió comunicaciones cifradas hacia la infraestructura C2.
+</p>
+
+<hr>
+
+<h2>Pivoting / Movimiento Lateral</h2>
+
+<p>
+La estación comprometida fue utilizada como nodo proxy para enrutar tráfico malicioso y evadir controles de seguridad.
+</p>
+
+<hr>
+
+<h2>Hilo 2 — Víctima 2</h2>
+
+<p>
+El atacante realizó reconocimiento interno y posteriormente comprometió activos críticos utilizando credenciales administrativas comprometidas.
+</p>
+
+<hr>
+
+<!-- BOTÓN PDF -->
+      <a href="../docs/182033-ACT018.pdf" download>
+        <button>Descargar Mi Actividad en PDF</button>
+      </a>
+      
+
+      </article>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 - Seguridad Informática</p>
+</footer>
+</body>
+</html>

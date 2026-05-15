@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad 17 - Evaluacion de vulnerabilidades con CVSS v3.1.. </title>
+    <link rel="stylesheet" href="../csss/styles.css">
+  <link rel="stylesheet" href="../csss/act.css">
+  <link rel="icon" type="image/jfif" href="../fondo.jfif">
+</head>
+<body>
+
+<header>
+  <h1>Portafolio de Evidencias</h1>
+  <nav>
+    <ul>
+      <li><a href="..\index.html">Inicio</a></li>
+      <li><a href="..\PF04.html">Parcial 3</a></li>
+    </ul>
+  </nav>
+</header>
+    
+<main>
+  <div class="blog-container">
+    <article class="blog-post">
+        <h2>ACTIVIDAD 17 - Evaluacion de vulnerabilidades con CVSS v3.1.. </h2>
+
+      Carlos René Castillo Olvera – 182033</p>
+
+      <p><strong>Materia:</strong> Seguridad Informática (CNO V)<br>
+      <strong>Fecha:</strong> 15/5/2026<br>
+      <strong>Docente:</strong> Lopez Servando</p>
+        <img src="port17.PNG" alt="Portada" align="center">
+
+      <hr>
+<hr>
+
+<h1>Objetivo General</h1>
+
+<p>
+Aplicar el modelo CVSS v3.1 para evaluar la gravedad de vulnerabilidades reales, interpretando correctamente sus métricas base y justificando la priorización del riesgo en un contexto organizacional.
+</p>
+
+<hr>
+
+<h1>Objetivos Específicos</h1>
+
+<p>
+Identificar y comprender las métricas base de CVSS:
+</p>
+
+<p>
+AV — Attack Vector
+</p>
+
+<p>
+AC — Attack Complexity
+</p>
+
+<p>
+PR — Privileges Required
+</p>
+
+<p>
+UI — User Interaction
+</p>
+
+<p>
+S — Scope
+</p>
+
+<p>
+C — Confidentiality
+</p>
+
+<p>
+I — Integrity
+</p>
+
+<p>
+A — Availability
+</p>
+
+<hr>
+
+<p>
+Construir correctamente una cadena vector CVSS a partir de un escenario técnico.
+</p>
+
+<p>
+Calcular e interpretar la puntuación de riesgo para priorizar acciones de mitigación.
+</p>
+
+<hr>
+
+<h1>Escenario</h1>
+
+<p>
+Una organización detecta una vulnerabilidad en un sistema web interno con las siguientes características:
+</p>
+
+<hr>
+
+<h2>1. Vector de ataque</h2>
+
+<p>
+Puede explotarse a través de la red.
+</p>
+
+<hr>
+
+<h2>2. Complejidad del ataque</h2>
+
+<p>
+La explotación requiere baja complejidad.
+</p>
+
+<hr>
+
+<h2>3. Privilegios requeridos</h2>
+
+<p>
+Se necesitan privilegios elevados.
+</p>
+
+<hr>
+
+<h2>4. Interacción del usuario</h2>
+
+<p>
+No requiere interacción del usuario.
+</p>
+
+<hr>
+
+<h2>5. Alcance</h2>
+
+<p>
+No cambia el alcance.
+</p>
+
+<hr>
+
+<h2>6. Impacto</h2>
+
+<p>
+Confidencialidad: Bajo.
+</p>
+
+<p>
+Integridad: Bajo.
+</p>
+
+<p>
+Disponibilidad: Bajo.
+</p>
+
+<hr>
+
+<h1>Cadena de Vector</h1>
+
+<p>
+CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L
+</p>
+
+<hr>
+
+<h1>Interpretación Técnica</h1>
+
+<p>
+La vulnerabilidad sigue siendo relevante porque un atacante que ya tenga acceso administrativo o credenciales privilegiadas puede explotarla fácilmente.
+</p>
+
+<p>
+El atacante que podría aprovecharse sería un usuario interno malicioso, un administrador comprometido o un atacante que previamente obtuvo acceso privilegiado mediante robo de credenciales o el uso de otras técnicas.
+</p>
+
+<p>
+Que el impacto sea bajo en confidencialidad, integridad y disponibilidad significa que la vulnerabilidad genera afectaciones limitadas.
+</p>
+
+<p>
+Por ejemplo, la información expuesta es reducida, las modificaciones al sistema no son graves y la disponibilidad del servicio solo se afecta mínimamente.
+</p>
+
+<hr>
+
+<h1>Cálculo de Puntuación</h1>
+
+<h2>Puntuación Base</h2>
+
+<p>
+4.7
+</p>
+
+<hr>
+
+<h2>Categoría</h2>
+
+<p>
+Media (4.0 – 6.9)
+</p>
+
+<hr>
+
+<p>
+La vulnerabilidad se clasifica como de riesgo medio según la escala CVSS v3.1.
+</p>
+
+<hr>
+
+<!-- BOTÓN PDF -->
+      <a href="../docs/182033-ACT017.pdf" download>
+        <button>Descargar Mi Actividad en PDF</button>
+      </a>
+      
+
+      </article>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 - Seguridad Informática</p>
+</footer>
+</body>
+</html>
