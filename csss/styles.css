@@ -1,0 +1,224 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+header {
+  background-color: #020617;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.perfil-img {
+  width: 140px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #38bdf8;
+  margin-bottom: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+}
+
+nav a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: white;
+  border-bottom: 2px solid #38bdf8;
+}
+
+main {
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #020617;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input, textarea {
+  padding: 0.7rem;
+  border-radius: 5px;
+  border: 1px solid #1e293b;
+  background-color: #0f172a;
+  color: white;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 5px #38bdf8;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  background-color: #38bdf8;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0ea5e9;
+  transform: scale(1.05);
+}
+
+footer {
+  background-color: #020617;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  header {
+    padding: 1rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  section {
+    padding: 1rem;
+  }
+
+  .perfil-img {
+    width: 110px;
+    height: 110px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+}
+
+/* ===== IMÁGENES RESPONSIVAS ===== */
+.blog-post img {
+  max-width: 100%;      /* No excede ancho del contenedor */
+  height: auto;         /* Mantiene proporción */
+  display: block;       /* Bloque separado del texto */
+  margin: 1rem 0;       /* Espacio arriba y abajo */
+  border-radius: 6px;   /* Bordes redondeados opcional */
+}
+
+/* ===== BLOQUES DE CÓDIGO (DARK MODE) ===== */
+pre code {
+  display: block;                 
+  background-color: #1e293b;      /* Gris oscuro */
+  color: #cbd5e1;                 /* Texto claro */
+  padding: 15px;                  
+  border-radius: 8px;             
+  font-family: Consolas, monospace;
+  overflow-x: auto;               
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== BOTONES UNIFICADOS ===== */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #38bdf8;
+  color: #0f172a;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #0ea5e9;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+/* ===== VIDEOS RESPONSIVOS ===== */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;  /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Para móviles muy pequeños */
+@media (max-width: 480px) {
+  .video-container iframe {
+    height: 200px;
+  }
+
+  .blog-post table, .table-wrapper table {
+    font-size: 0.8rem;
+  }
+
+  .blog-post img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ===== ENLACES DENTRO DEL BLOG ===== */
+.blog-post a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.blog-post a:hover {
+  color: #0ea5e9;
+  text-decoration: underline;
+}
+
+/* ===== ESPACIADO Y SEPARACIÓN ===== */
+.blog-post h2, .blog-post h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.blog-post hr {
+  border: 1px solid #1e293b;
+  margin: 2rem 0;
+}
